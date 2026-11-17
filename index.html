@@ -259,13 +259,14 @@ footer dd{display:inline;margin:0}
 .rd2 span.dim{opacity:.45}
 .rd2 svg{flex:none;width:14px;height:14px}
 @media (min-width:700px){.ctg{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px 36px}}
+.lang select{padding:5px 8px;border:1px solid var(--edge);border-radius:3px;background:#0f0b07;color:var(--ink);font:700 .8rem/1.2 var(--text);letter-spacing:.04em;cursor:pointer}
 </style></head><body>
 
 <div class="wrap">
   <header class="mast">
     <div class="topbar"><a class="tolink" href="#contact">Contact</a>
     <div class="lang" role="group" aria-label="Langue / Language">
-      <button type="button" data-lang="fr" aria-pressed="true">FR</button><button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <select id="lang-sel" aria-label="Langue / Language"><option value="fr">Français</option><option value="en">English</option><option value="de">Deutsch</option><option value="ru">Русский</option><option value="zh">简体中文</option><option value="pl">Polski</option><option value="pt">Português (BR)</option></select>
     </div></div>
     <div class="poster">
       <div class="orn" aria-hidden="true"><svg class="cyl" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18.6" fill="currentColor"/><g class="h"><circle cx="20" cy="9" r="4.4"/><circle cx="29.53" cy="14.5" r="4.4"/><circle cx="29.53" cy="25.5" r="4.4"/><circle cx="20" cy="31" r="4.4"/><circle cx="10.47" cy="25.5" r="4.4"/><circle cx="10.47" cy="14.5" r="4.4"/><circle cx="20" cy="20" r="2.3"/><circle cx="29.75" cy="3.11" r="2.6"/><circle cx="39.5" cy="20" r="2.6"/><circle cx="29.75" cy="36.89" r="2.6"/><circle cx="10.25" cy="36.89" r="2.6"/><circle cx=".5" cy="20" r="2.6"/><circle cx="10.25" cy="3.11" r="2.6"/></g></svg></div>
@@ -313,7 +314,7 @@ var AXES=["d","r","m","f","ex","rl","v","sp"];
 var TCOLS=["n","p","s","d","r","m","f","c","v","sp","sw","rl","ld","ex","ml","mh","st","a"];
 var CROWS=["p","s","a","am","ld","ex","d","r","m","f","c","v","sp","sw","rl","ml","mh","st"];
 var SORTKEYS=["n","p","s","d","r","m","f","c","v","sp","sw","rl","ex","ld","ml","mh"];
-var UNIT={r:"m",m:"m/s",c:"s",rl:"s",v:"°",f:{fr:"c/min",en:"rpm"}};
+var UNIT={r:"m",m:"m/s",c:"s",rl:"s",v:"°",f:{fr:"c/min",en:"rpm",de:"Schuss/min",ru:"выстр./мин",zh:"发/分",pl:"strz./min",pt:"tiros/min"}};
 var AMMO={
  "FMJ":["FMJ","FMJ"],"HV":["Haute vélocité","High Velocity"],"Incendiary":["Incendiaire","Incendiary"],"Poison":["Poison","Poison"],
  "Subsonic":["Subsonique","Subsonic"],"Dumdum":["Dumdum","Dumdum"],"Explosive":["Explosive","Explosive"],"Spitzer":["Spitzer","Spitzer"],
@@ -462,9 +463,432 @@ en:{
  src:"Stats and ammo collected on 17 November 2026 from the {wiki}, one page per weapon; each card links to its page. Price, size, damage and velocity were cross-checked against {bayou}: differences are flagged in the card concerned. Where the wiki contradicts itself between a weapon’s infobox and its ammo section, both values are shown.",
  excl:"Not listed because they cannot be bought: Wildland, Homestead 78, Shredder, Flame Rifle and items picked up in missions. The wiki is player-maintained: after a balance update, check in game."
 }};
+T.de={
+ title:"Arsenal des Jägers",sub:"Katalog der {n} kaufbaren Waffen · Hunt: Showdown 1896",
+ tabs:{list:"Katalog",table:"Tabelle",cmp:"Vergleich",book:"Gästebuch"},views:"Ansichten",
+ search:"Waffe suchen…",fSize:"Größe",fClass:"Munition",more:"Weitere Filter",fSp:"Spezialmunition",any:"Beliebig",fPr:"Höchstpreis",noLimit:"keine Grenze",fVar:"Varianten ausblenden (Zielfernrohr, Schalldämpfer, Bajonett…)",
+ fSort:"Sortieren nach",asc:"↑ aufsteigend",desc:"↓ absteigend",reset:"Zurücksetzen",
+ count:function(a,b){return a+" von "+b+" Waffen"},
+ none:"Keine Waffe passt zu diesen Filtern.",
+ hint:"Tippe auf eine Waffe, um Werte, Munition und passende Kombinationen zu sehen.",
+ tableNote:"Werte mit Standardmunition. Tippe auf eine Spalte zum Sortieren, auf einen Namen für die Karte.",
+ cls:{C:"Kompakt",M:"Mittel",L:"Lang",S:"Spezial-Lang",B:"Schrot",X:"Spezial",H:"Nahkampf"},
+ st:{n:["Name","Waffe"],p:["Preis","Preis"],s:["Größe","Größe"],a:["Munitionstyp","Munition"],am:["Gewählte Munition","Patrone"],
+     d:["Schaden","Schaden"],r:["Abfallreichweite","Abfall"],m:["Mündungsgeschwindigkeit","Tempo"],f:["Feuerrate","Rate"],c:["Zykluszeit","Zyklus"],
+     v:["Vertikaler Rückstoß","Rückstoß"],sp:["Streuung","Streuung"],sw:["Schwanken","Schwanken"],rl:["Nachladezeit","Nachladen"],ex:["Reservemunition","Reserve"],
+     ld:["Geladen","Geladen"],ml:["Nahkampf","Nahkampf"],mh:["Schwerer Nahkampf","S. Nahk."],st:["Ausdauer pro Treffer","Ausd."]},
+ ammo:"Munition",base:"Standard",b1:"Hauptlauf",b2:"Zweiter Lauf (Schrot)",b2s:"2. Lauf",
+ scarce:"Selten: nur in Missionen zu finden",apr:"Preis: {p}",
+ perf:"Leistung",
+ lgBars:"Graue Leiste: Standardmunition. Farbige Leiste: gewählte Munition, überlagert und halbtransparent. Skala: 0 bis zum Höchstwert des Arsenals.",
+ lgDelta:"▲ besser, ▼ schlechter. Bei Rückstoß, Streuung, Schwanken, Zyklus und Nachladen ist ein niedrigerer Wert besser.",
+ perSlot:"{s} Plätze zu je {e}",
+ facts:"Details",light:"Leichter Angriff",heavy:"Schwerer Angriff",stl:"Ausdauer (leicht)",sth:"Ausdauer (schwer)",
+ b2facts:"Zweiter Lauf, Standardmunition",
+ notes:"Zu prüfen",
+ mm:"{s}: Der Munitionsabschnitt des Wikis geht von {o} aus, die Infobox der Waffe nennt {b}.",
+ b2note:"Zweiter Lauf: Das Wiki nennt nur einen Wert für Schaden, Streuung und Schwanken der ganzen Waffe; Munitionsänderungen gehen von diesem Wert aus.",
+ altP:"The Bayou Index nennt einen Preis von {x}.",altM:"The Bayou Index nennt eine Mündungsgeschwindigkeit von {x}.",altD:"The Bayou Index nennt {x} Schaden.",
+ wn:{nMakoClaw:"Nahkampf: Das Wiki nennt 120 für den leichten und 54 für den schweren Angriff. Das wirkt vertauscht oder unvollständig.",
+     nLebelTalon:"Schwerer Nahkampf: 54 im Wiki, während die anderen Talon-Varianten 330 haben.",
+     nBow:"Das Wiki nennt den Schaden des Bogens „variabel“: Er hängt davon ab, wie weit die Sehne gespannt ist.",
+     nBolts:"Bolzen können eingesammelt und wiederverwendet werden."},
+ fx:{bL:"Leichte Blutung",bM:"Mittlere Blutung",bI:"Starke Blutung",fM:"Mittleres Brennen",fI:"Starkes Brennen",pL:"Leichte Vergiftung",pM:"Mittlere Vergiftung",pI:"Starke Vergiftung",
+     q:"Leiseres Geräusch",rec:"Kann eingesammelt und wiederverwendet werden",xsd:"Explodiert nach kurzer Zeit",cw:"Erzeugt beim Aufprall ein kleines Bündel Stacheldraht (6–8 Stränge)",
+     x2s:"Explodiert 2 Sekunden nach dem Abschuss und verursacht Blutung",nChaos:"Erzeugt am Aufprallpunkt ein zufälliges Schussgeräusch",
+     nChoke:"Erzeugt am Aufprallpunkt eine kleine, kurzlebige Choke-Wolke",
+     nDragon:"Erzeugt am Aufprallpunkt eine kleine, kurzlebige Feuerlache; zerfällt bei Kontakt mit einer Choke-Wolke",
+     nPoisonCloud:"Erzeugt am Aufprallpunkt eine kleine, kurzlebige Giftwolke",
+     nFragArrow:"Der Wert im Spiel kombiniert Mindest-Aufprall- und Explosionsschaden: 25 bis 50 beim Aufprall je nach Spannzeit, bis zu 111 für die Explosion",
+     nPoisonArrow:"Treffer verursachen pauschal 10 Giftschaden; der Gesamtschaden des Pfeils ist zum Ausgleich verringert",
+     nWaxed:"Laut Wiki entspricht der Wert im Spiel nicht dem Schaden im Match: 25 beim Aufprall und bis zu 126 für die Explosion",
+     nSlug157:"Laut Wiki entspricht der Wert im Spiel nicht dem Schaden im Match: Dieses Flintenlaufgeschoss verursacht 157, wie andere Schrotflinten mit zwei Plätzen",
+     nNagantSub:"Reservemunition: Das Wiki nennt 21 → 14, während Subsonic die Reserve bei den anderen Nagants erhöht. Zweifelhafter Wert"},
+ fxFo:"Schadensabfall ab {n} m",fxIg:"Setzt Jäger mit einem Schuss bis {n} m in Brand",
+ fam:"Gleiche Familie",pair:"Passt gut zu",pair5:"Innerhalb der 5 Plätze",pairQ:"Mit Quartermaster (6 Plätze)",
+ pairNone:"Diese Waffe belegt bereits alle 5 Plätze.",
+ pairNote:"Berechnete Vorschläge: ergänzende Reichweite, passt in die freien Plätze, ähnlicher Preis. Kein Ranking von Spielern.",
+ role:{close:"Nahdistanz",mid:"mittlere Distanz",long:"Fernkampf"},
+ add:"＋ Zum Vergleich hinzufügen",rem:"✓ Im Vergleich (entfernen)",full:"Vergleich voll: entferne eine Kurve",wiki:"Wiki-Seite ↗",
+ cmpEmpty:"Der Vergleich ist leer. Öffne eine Waffe im Katalog, wähle bei Bedarf eine Munition und tippe auf „Zum Vergleich hinzufügen“. Höchstens vier Kurven.",
+ toList:"Zum Katalog",hintW:"Klicke auf eine Waffe: Ihre Karte erscheint rechts.",pick:"Wähle eine Waffe in der Liste, um ihre Karte hier zu sehen.",
+ gbTitle:"Gästebuch",gbIntro:"Eine Meinung, eine Kombination, die funktioniert, ein entdeckter Fehler? Hinterlasse den anderen Jägern ein Wort. Die Nachrichten sind für alle sichtbar, die diese Seite öffnen können.",
+ gbSig:"Unterschrift",gbSigPh:"Dein Jägername",gbMsg:"Nachricht",gbMsgPh:"Dein Wort…",gbSend:"Ins Buch eintragen",gbSending:"Wird gesendet…",
+ gbLeft:"Noch {n} Zeichen",gbDone:"Danke, dein Eintrag steht im Buch.",gbNeed:"Schreibe eine Unterschrift und eine Nachricht.",
+ gbEmpty:"Noch hat niemand unterschrieben. Sei der Erste!",gbWait:"Das Buch wird geöffnet…",
+ gbSlow:"Das Gästebuch antwortet gerade nicht; die Anzeige ist eventuell nicht aktuell.",
+ gbOff:"Das Gästebuch funktioniert auf der auf claude.ai veröffentlichten Seite, für angemeldete Personen mit Zugriff.",
+ gbErr:"Das Gästebuch ist gerade nicht verfügbar.",
+ gbRO:"Du kannst das Gästebuch lesen, aber dein aktueller Zugriff erlaubt nicht, hineinzuschreiben.",
+ gbFail:"Die Nachricht konnte nicht gespeichert werden. Versuche es gleich noch einmal.",
+ gbFull:"Das Gästebuch ist voll: Der Besitzer muss Platz schaffen, bevor neue Nachrichten möglich sind.",
+ gbDel:"Entfernen",gbConfirm:"Entfernen bestätigen",gbMod:"Dir gehört diese Seite: Du kannst jede Nachricht entfernen.",gbAnon:"Anonymer Jäger",
+ ctTitle:"Kontakt & Quellen",ctContact:"Kontakt",ctText:"Eine Frage, eine Idee oder ein falscher Wert? Du findest mich auf Twitch.",
+ copy:"Kopieren",copied:"Kopiert!",copySel:"Markiert: jetzt kopieren",ctSrc:"Quellen",ctWiki:"Werte und Munition, eine Seite pro Waffe",ctBayou:"Abgleich von Preisen, Schaden, Geschwindigkeit und Größe",
+ dropTitle:"Geschossabfall",dist:"Distanz",head:"Kopf",dropAt:"Bei {d}:",dropOver:"über 60 cm",
+ dropAria:"Diagramm des Geschossabfalls nach Distanz für die verglichenen Waffen",
+ dropCap:"Schätzung: Jede Kurve läuft durch die Abfallreichweite des Wikis, also die Distanz, auf der das Geschoss etwa 20 cm gefallen ist, eine Kopfhöhe (die Markierung zeigt diesen Punkt), und folgt einer Parabel. Das Spiel veröffentlicht die genaue Flugbahn nicht: Dies ist eine Näherung zum Vergleichen. Nahkampfwaffen sind nicht dabei.",
+ cmpTitle:"Überlagerte Kurven",radarAria:"Netzdiagramm der gewählten Waffen; die Werte stehen in der Tabelle darunter.",
+ cmpCap:"Jede Achse reicht von 0 in der Mitte bis zum Wert am Rand. Mit ↓ markierte Achsen (links): kleiner ist besser. Die anderen: größer ist besser.",
+ cmpTap:"Tippe auf einen Punkt, um seinen Wert zu lesen, oder auf einen Namen, um seine Kurve hervorzuheben.",
+ nullNote:"Hohler Punkt in der Mitte: Wert fehlt im Wiki.",meleeNote:"Nahkampfwaffe: keine Kurve, ihre Werte stehen in der Tabelle.",
+ best:"Unterstrichen: bester Wert der Zeile.",clear:"Alles leeren",remove:"Entfernen",na:"fehlt im Wiki",colon:": ",
+ gloss:"Was die Werte bedeuten",
+ g:[["Größe","1 bis 5 Plätze pro Waffe. Ein Jäger trägt zwei Waffen mit insgesamt 5 Plätzen, 6 mit dem Trait Quartermaster."],
+    ["Abfallreichweite","Distanz in Metern, ab der das Geschoss etwa eine Kopfhöhe (20 cm) unter den Zielpunkt gefallen ist."],
+    ["Mündungsgeschwindigkeit","Geschwindigkeit des Geschosses in Metern pro Sekunde."],
+    ["Feuerrate","Schüsse pro Minute, Nachladezeit eingerechnet."],
+    ["Zykluszeit","Zeit in Sekunden, bis die Waffe für den nächsten Schuss bereit ist."],
+    ["Vertikaler Rückstoß","Stärke des vertikalen Rückstoßes nach einem Schuss, in Grad."],
+    ["Streuung","relative Streuung des Fadenkreuzes beim Schießen aus der Hüfte."],
+    ["Schwanken","relatives Schwanken der Waffe beim Zielen über Kimme und Korn."],
+    ["Nachladezeit","Zeit in Sekunden, um die leere Waffe vollständig nachzuladen."],
+    ["Reservemunition","Patronen zusätzlich zu den geladenen. Manche Waffen haben zwei Reserveplätze; die Summe geht von gleicher Munition in beiden aus."]],
+ src:"Werte und Munition am 17. November 2026 aus dem {wiki} übernommen, eine Seite pro Waffe; jede Karte verlinkt ihre Seite. Preis, Größe, Schaden und Geschwindigkeit wurden mit {bayou} abgeglichen: Abweichungen sind in der jeweiligen Karte vermerkt. Widerspricht sich das Wiki zwischen Infobox und Munitionsabschnitt, werden beide Werte gezeigt.",
+ excl:"Nicht aufgeführt, weil nicht kaufbar: Wildland, Homestead 78, Shredder, Flame Rifle und in Missionen gefundene Gegenstände. Das Wiki wird von Spielern gepflegt: Nach einem Balance-Update im Spiel prüfen."
+};
+T.ru={
+ title:"Арсенал охотника",sub:"Каталог {n} покупаемых видов оружия · Hunt: Showdown 1896",
+ tabs:{list:"Каталог",table:"Таблица",cmp:"Сравнение",book:"Гостевая"},views:"Разделы",
+ search:"Найти оружие…",fSize:"Размер",fClass:"Патроны",more:"Ещё фильтры",fSp:"Особые патроны",any:"Любые",fPr:"Макс. цена",noLimit:"без ограничений",fVar:"Скрыть варианты (прицел, глушитель, штык…)",
+ fSort:"Сортировка",asc:"↑ по возрастанию",desc:"↓ по убыванию",reset:"Сбросить",
+ count:function(a,b){return a+" из "+b},
+ none:"Нет оружия под эти фильтры.",
+ hint:"Нажмите на оружие, чтобы увидеть характеристики, патроны и удачные сочетания.",
+ tableNote:"Значения с базовыми патронами. Нажмите на заголовок для сортировки, на название — чтобы открыть карточку.",
+ cls:{C:"Компактные",M:"Средние",L:"Длинные",S:"Особые длинные",B:"Дробь",X:"Особые",H:"Ближний бой"},
+ st:{n:["Название","Оружие"],p:["Цена","Цена"],s:["Размер","Размер"],a:["Тип патронов","Патроны"],am:["Выбранные патроны","Патрон"],
+     d:["Урон","Урон"],r:["Дальность падения","Падение"],m:["Начальная скорость","Скорость"],f:["Скорострельность","Темп"],c:["Время цикла","Цикл"],
+     v:["Вертикальная отдача","Отдача"],sp:["Разброс","Разброс"],sw:["Раскачка","Раскачка"],rl:["Перезарядка","Перезар."],ex:["Запас патронов","Запас"],
+     ld:["В магазине","Магазин"],ml:["Ближний бой","Удар"],mh:["Сильный удар","С. удар"],st:["Выносливость за удар","Вынос."]},
+ ammo:"Патроны",base:"Базовые",b1:"Основной ствол",b2:"Второй ствол (дробь)",b2s:"2-й ствол",
+ scarce:"Редкие: только в миссиях",apr:"Цена: {p}",
+ perf:"Характеристики",
+ lgBars:"Серая полоса: базовые патроны. Цветная полоса: выбранные патроны, наложены и полупрозрачны. Шкала: от 0 до максимума арсенала.",
+ lgDelta:"▲ лучше, ▼ хуже. Для отдачи, разброса, раскачки, цикла и перезарядки меньше — лучше.",
+ perSlot:"{s} ячейки по {e}",
+ facts:"Подробности",light:"Обычный удар",heavy:"Сильный удар",stl:"Выносливость (обычный)",sth:"Выносливость (сильный)",
+ b2facts:"Второй ствол, базовые патроны",
+ notes:"Проверить",
+ mm:"{s}: раздел патронов на вики исходит из {o}, а в карточке оружия указано {b}.",
+ b2note:"Второй ствол: вики даёт одно значение урона, разброса и раскачки для всего оружия; изменения от патронов отсчитываются от него.",
+ altP:"The Bayou Index указывает цену {x}.",altM:"The Bayou Index указывает начальную скорость {x}.",altD:"The Bayou Index указывает урон {x}.",
+ wn:{nMakoClaw:"Ближний бой: вики указывает 120 для обычного удара и 54 для сильного. Похоже, значения перепутаны или неполны.",
+     nLebelTalon:"Сильный удар: 54 на вики, тогда как у других вариантов Talon — 330.",
+     nBow:"Вики называет урон лука «переменным»: он зависит от натяжения тетивы.",
+     nBolts:"Болты можно подобрать и использовать снова."},
+ fx:{bL:"Слабое кровотечение",bM:"Среднее кровотечение",bI:"Сильное кровотечение",fM:"Среднее горение",fI:"Сильное горение",pL:"Слабое отравление",pM:"Среднее отравление",pI:"Сильное отравление",
+     q:"Тише выстрел",rec:"Можно подобрать и использовать снова",xsd:"Взрывается через короткое время",cw:"При попадании создаёт небольшой моток колючей проволоки (6–8 нитей)",
+     x2s:"Взрывается через 2 секунды после выстрела и вызывает кровотечение",nChaos:"Издаёт случайный звук выстрела в точке попадания",
+     nChoke:"Создаёт в точке попадания небольшое кратковременное облако Choke",
+     nDragon:"Создаёт в точке попадания небольшую кратковременную лужу огня; рассеивается при контакте с облаком Choke",
+     nPoisonCloud:"Создаёт в точке попадания небольшое кратковременное ядовитое облако",
+     nFragArrow:"Значение в игре объединяет минимальный урон попадания и взрыва: 25–50 при попадании в зависимости от натяжения, до 111 от взрыва",
+     nPoisonArrow:"Попадание наносит 10 урона ядом; общий урон стрелы снижен для баланса",
+     nWaxed:"По данным вики, значение в игре не совпадает с уроном в матче: 25 при попадании и до 126 от взрыва",
+     nSlug157:"По данным вики, значение в игре не совпадает с уроном в матче: эта пуля наносит 157, как у других дробовиков на две ячейки",
+     nNagantSub:"Запас патронов: на вики 21 → 14, хотя у других Nagant Subsonic увеличивает запас. Сомнительное значение"},
+ fxFo:"Урон снижается после {n} м",fxIg:"Поджигает охотника с одного выстрела до {n} м",
+ fam:"То же семейство",pair:"Хорошо сочетается с",pair5:"В пределах 5 ячеек",pairQ:"С Quartermaster (6 ячеек)",
+ pairNone:"Это оружие уже занимает все 5 ячеек.",
+ pairNote:"Рассчитанные варианты: дополняющая дальность, помещается в свободные ячейки, близкая цена. Это не рейтинг игроков.",
+ role:{close:"ближняя дистанция",mid:"средняя дистанция",long:"дальняя дистанция"},
+ add:"＋ Добавить в сравнение",rem:"✓ В сравнении (убрать)",full:"Сравнение заполнено: уберите график",wiki:"Страница вики ↗",
+ cmpEmpty:"Сравнение пусто. Откройте оружие в каталоге, при желании выберите патроны и нажмите «Добавить в сравнение». Не больше четырёх графиков.",
+ toList:"В каталог",hintW:"Нажмите на оружие: его карточка появится справа.",pick:"Выберите оружие в списке, чтобы увидеть здесь его карточку.",
+ gbTitle:"Гостевая книга",gbIntro:"Отзыв, удачная сборка, найденная ошибка? Оставьте слово другим охотникам. Сообщения видны всем, кто может открыть эту страницу.",
+ gbSig:"Подпись",gbSigPh:"Ваше имя охотника",gbMsg:"Сообщение",gbMsgPh:"Ваше слово…",gbSend:"Подписать книгу",gbSending:"Отправка…",
+ gbLeft:"Осталось символов: {n}",gbDone:"Спасибо, ваша запись в книге.",gbNeed:"Напишите подпись и сообщение.",
+ gbEmpty:"Пока никто не подписался. Будьте первым!",gbWait:"Открываем книгу…",
+ gbSlow:"Гостевая книга сейчас не отвечает; показанное может быть неактуальным.",
+ gbOff:"Гостевая книга работает на странице, опубликованной на claude.ai, для вошедших пользователей с доступом.",
+ gbErr:"Гостевая книга сейчас недоступна.",
+ gbRO:"Вы можете читать гостевую книгу, но ваш текущий доступ не позволяет в ней писать.",
+ gbFail:"Не удалось сохранить сообщение. Попробуйте чуть позже.",
+ gbFull:"Гостевая книга заполнена: владельцу нужно освободить место.",
+ gbDel:"Удалить",gbConfirm:"Подтвердить удаление",gbMod:"Вы владелец страницы: можете удалить любое сообщение.",gbAnon:"Анонимный охотник",
+ ctTitle:"Контакты и источники",ctContact:"Контакты",ctText:"Вопрос, идея или ошибка в цифрах? Найдите меня на Twitch.",
+ copy:"Копировать",copied:"Скопировано!",copySel:"Выделено: скопируйте",ctSrc:"Источники",ctWiki:"характеристики и патроны, страница на каждое оружие",ctBayou:"сверка цен, урона, скорости и размера",
+ dropTitle:"Падение пули",dist:"Дистанция",head:"голова",dropAt:"На {d}:",dropOver:"больше 60 см",
+ dropAria:"График падения пули в зависимости от дистанции для сравниваемого оружия",
+ dropCap:"Оценка: каждая кривая проходит через дальность падения с вики — дистанцию, на которой пуля опустилась примерно на 20 см, высоту головы (метка отмечает эту точку), — и идёт по параболе. Игра не публикует точную траекторию: это приближение для сравнения. Оружие ближнего боя не показано.",
+ cmpTitle:"Наложенные графики",radarAria:"Лепестковая диаграмма выбранного оружия; значения в таблице ниже.",
+ cmpCap:"Каждая ось идёт от 0 в центре до значения на краю. Оси со знаком ↓ (слева): меньше — лучше. Остальные: больше — лучше.",
+ cmpTap:"Нажмите на точку, чтобы увидеть значение, или на название, чтобы выделить график.",
+ nullNote:"Пустая точка в центре: значения нет на вики.",meleeNote:"Оружие ближнего боя: без графика, значения в таблице.",
+ best:"Подчёркнуто: лучшее значение в строке.",clear:"Очистить",remove:"Убрать",na:"нет на вики",colon:": ",
+ gloss:"Что означают характеристики",
+ g:[["Размер","от 1 до 5 ячеек на оружие. Охотник носит два оружия общим размером 5 ячеек, 6 с навыком Quartermaster."],
+    ["Дальность падения","дистанция в метрах, на которой снаряд опускается примерно на высоту головы (20 см) ниже точки прицеливания."],
+    ["Начальная скорость","скорость снаряда в метрах в секунду."],
+    ["Скорострельность","выстрелов в минуту с учётом перезарядки."],
+    ["Время цикла","время в секундах до готовности к следующему выстрелу."],
+    ["Вертикальная отдача","сила вертикальной отдачи после выстрела, в градусах."],
+    ["Разброс","относительный разброс прицела при стрельбе от бедра."],
+    ["Раскачка","относительная раскачка оружия при прицеливании."],
+    ["Перезарядка","время в секундах на полную перезарядку пустого оружия."],
+    ["Запас патронов","патроны сверх заряженных. У некоторых видов оружия две ячейки запаса; итог считается при одинаковых патронах в обеих."]],
+ src:"Характеристики и патроны собраны 17 ноября 2026 года на {wiki}, по странице на каждое оружие; каждая карточка ссылается на свою страницу. Цена, размер, урон и скорость сверены с {bayou}: расхождения отмечены в соответствующей карточке. Если вики противоречит себе между карточкой оружия и разделом патронов, показаны оба значения.",
+ excl:"Не указаны, потому что их нельзя купить: Wildland, Homestead 78, Shredder, Flame Rifle и предметы, найденные в миссиях. Вики ведут игроки: после обновления баланса проверяйте в игре."
+};
+T.zh={
+ title:"猎人军火库",sub:"{n} 把可购买武器目录 · Hunt: Showdown 1896",
+ tabs:{list:"目录",table:"表格",cmp:"对比",book:"留言簿"},views:"视图",
+ search:"搜索武器…",fSize:"尺寸",fClass:"弹药",more:"更多筛选",fSp:"特殊弹药",any:"不限",fPr:"最高价格",noLimit:"不限",fVar:"隐藏变体（瞄准镜、消音器、刺刀…）",
+ fSort:"排序",asc:"↑ 升序",desc:"↓ 降序",reset:"重置",
+ count:function(a,b){return a+" / "+b+" 把武器"},
+ none:"没有符合这些筛选条件的武器。",
+ hint:"点击武器即可查看属性、弹药和搭配建议。",
+ tableNote:"数值为基础弹药。点击表头排序，点击名称打开卡片。",
+ cls:{C:"紧凑",M:"中型",L:"长型",S:"特殊长型",B:"霰弹",X:"特殊",H:"近战"},
+ st:{n:["名称","武器"],p:["价格","价格"],s:["尺寸","尺寸"],a:["弹药类型","弹药"],am:["所选弹药","弹种"],
+     d:["伤害","伤害"],r:["下坠距离","下坠"],m:["初速","初速"],f:["射速","射速"],c:["循环时间","循环"],
+     v:["垂直后坐力","后坐"],sp:["散布","散布"],sw:["晃动","晃动"],rl:["装填时间","装填"],ex:["备用弹药","备弹"],
+     ld:["装弹量","装弹"],ml:["近战","近战"],mh:["重击","重击"],st:["每击耐力","耐力"]},
+ ammo:"弹药",base:"基础",b1:"主枪管",b2:"第二枪管（霰弹）",b2s:"第二枪管",
+ scarce:"稀有：仅在任务中获得",apr:"价格：{p}",
+ perf:"性能",
+ lgBars:"灰色条：基础弹药。彩色条：所选弹药，叠加且半透明。刻度：0 到整个军火库的最大值。",
+ lgDelta:"▲ 更好，▼ 更差。后坐力、散布、晃动、循环和装填时间越低越好。",
+ perSlot:"{s} 个栏位，每个 {e}",
+ facts:"详情",light:"轻击",heavy:"重击",stl:"耐力（轻击）",sth:"耐力（重击）",
+ b2facts:"第二枪管，基础弹药",
+ notes:"待核实",
+ mm:"{s}：维基弹药部分以 {o} 为起点，而武器信息框写的是 {b}。",
+ b2note:"第二枪管：维基只给出整把武器的一个伤害、散布和晃动数值；弹药变化以此为基准。",
+ altP:"The Bayou Index 标注的价格为 {x}。",altM:"The Bayou Index 标注的初速为 {x}。",altD:"The Bayou Index 标注的伤害为 {x}。",
+ wn:{nMakoClaw:"近战：维基写轻击 120、重击 54，看起来像是写反或不完整。",
+     nLebelTalon:"重击：维基写 54，而其他 Talon 变体为 330。",
+     nBow:"维基称弓的伤害为“可变”：取决于拉弓的程度。",
+     nBolts:"弩箭可以回收再用。"},
+ fx:{bL:"轻度流血",bM:"中度流血",bI:"重度流血",fM:"中度燃烧",fI:"重度燃烧",pL:"轻度中毒",pM:"中度中毒",pI:"重度中毒",
+     q:"声音更小",rec:"可回收再用",xsd:"短时间后爆炸",cw:"命中时生成一小团铁丝网（6–8 股）",
+     x2s:"射出 2 秒后爆炸并造成流血",nChaos:"在命中点发出随机枪声",
+     nChoke:"在命中点生成小范围、短暂的窒息云",
+     nDragon:"在命中点生成小范围、短暂的火焰；接触窒息云会消散",
+     nPoisonCloud:"在命中点生成小范围、短暂的毒云",
+     nFragArrow:"游戏内数值合并了最低命中伤害和爆炸伤害：命中 25 到 50（视拉弓时间而定），爆炸最高 111",
+     nPoisonArrow:"命中造成固定 10 点毒素伤害；箭的总伤害相应降低",
+     nWaxed:"据维基，游戏内数值并非实战伤害：命中 25，爆炸最高 126",
+     nSlug157:"据维基，游戏内数值并非实战伤害：此独头弹造成 157，与其他两栏位霰弹枪相同",
+     nNagantSub:"备用弹药：维基写 21 → 14，而其他 Nagant 的亚音速弹会增加备弹。数值存疑"},
+ fxFo:"伤害自 {n} 米起衰减",fxIg:"{n} 米内一枪点燃猎人",
+ fam:"同系列",pair:"推荐搭配",pair5:"5 个栏位以内",pairQ:"带 Quartermaster（6 个栏位）",
+ pairNone:"这把武器已占满 5 个栏位。",
+ pairNote:"计算得出的建议：射程互补、能放进剩余栏位、价格相近。这不是玩家排名。",
+ role:{close:"近距离",mid:"中距离",long:"远距离"},
+ add:"＋ 加入对比",rem:"✓ 已在对比中（移除）",full:"对比已满：请移除一条曲线",wiki:"维基页面 ↗",
+ cmpEmpty:"对比为空。在目录中打开一把武器，可选择弹药，然后点击“加入对比”。最多四条曲线。",
+ toList:"前往目录",hintW:"点击武器：卡片显示在右侧。",pick:"在列表中选择一把武器，在此查看卡片。",
+ gbTitle:"留言簿",gbIntro:"一条评价、一个好用的搭配、一个发现的错误？给其他猎人留句话吧。所有能打开此页面的人都能看到留言。",
+ gbSig:"署名",gbSigPh:"你的猎人名",gbMsg:"留言",gbMsgPh:"你想说的话…",gbSend:"签名留言",gbSending:"发送中…",
+ gbLeft:"还可输入 {n} 个字符",gbDone:"谢谢，你的留言已写入留言簿。",gbNeed:"请填写署名和留言。",
+ gbEmpty:"还没有人留言。来做第一个吧！",gbWait:"正在打开留言簿…",
+ gbSlow:"留言簿暂时没有响应；显示的内容可能不是最新的。",
+ gbOff:"留言簿仅在发布于 claude.ai 的页面上可用，需登录且有访问权限。",
+ gbErr:"留言簿暂时不可用。",
+ gbRO:"你可以阅读留言簿，但你当前的访问权限不能留言。",
+ gbFail:"留言未能保存。请稍后再试。",
+ gbFull:"留言簿已满：需要页面所有者腾出空间。",
+ gbDel:"删除",gbConfirm:"确认删除",gbMod:"你是此页面的所有者：可以删除任何留言。",gbAnon:"匿名猎人",
+ ctTitle:"联系方式与来源",ctContact:"联系方式",ctText:"有问题、想法或发现数字错误？来 Twitch 找我。",
+ copy:"复制",copied:"已复制！",copySel:"已选中：请复制",ctSrc:"来源",ctWiki:"属性和弹药，每把武器一页",ctBayou:"核对价格、伤害、初速和尺寸",
+ dropTitle:"子弹下坠",dist:"距离",head:"头部",dropAt:"在 {d}：",dropOver:"超过 60 厘米",
+ dropAria:"对比武器的子弹下坠随距离变化的图表",
+ dropCap:"估算：每条曲线都经过维基给出的下坠距离，即子弹下坠约 20 厘米（一个头的高度）的距离（标记即该点），并按抛物线延伸。游戏未公布精确弹道：这只是用于比较的近似。不显示近战武器。",
+ cmpTitle:"叠加曲线",radarAria:"所选武器的雷达图；数值见下方表格。",
+ cmpCap:"每条轴从中心的 0 到边缘标注的数值。标有 ↓ 的轴（左侧）：越小越好。其他轴：越大越好。",
+ cmpTap:"点击一个点查看数值，或点击名称突出显示其曲线。",
+ nullNote:"中心的空心点：维基缺少该数值。",meleeNote:"近战武器：无曲线，数值见表格。",
+ best:"下划线：该行最佳数值。",clear:"全部清除",remove:"移除",na:"维基缺失",colon:"：",
+ gloss:"属性说明",
+ g:[["尺寸","每把武器占 1 到 5 个栏位。猎人携带两把武器，共 5 个栏位，有 Quartermaster 特质时为 6 个。"],
+    ["下坠距离","弹丸下坠到瞄准点下方约一个头高（20 厘米）时的距离，单位为米。"],
+    ["初速","弹丸速度，单位为米/秒。"],
+    ["射速","每分钟射击次数，含装填时间。"],
+    ["循环时间","武器准备好下一发所需的秒数。"],
+    ["垂直后坐力","射击后垂直后坐的强度，单位为度。"],
+    ["散布","腰射时准星的相对散布。"],
+    ["晃动","开镜瞄准时武器的相对晃动。"],
+    ["装填时间","空枪完全装填所需的秒数。"],
+    ["备用弹药","已装填之外携带的弹药。部分武器有两个备弹栏位；总数假设两栏弹药相同。"]],
+ src:"属性和弹药于 2026 年 11 月 17 日采集自 {wiki}，每把武器一页；每张卡片都链接到对应页面。价格、尺寸、伤害和初速已与 {bayou} 核对：差异在相应卡片中标出。若维基在信息框和弹药部分之间自相矛盾，则同时显示两个数值。",
+ excl:"未列出（无法购买）：Wildland、Homestead 78、Shredder、Flame Rifle 以及任务中拾取的物品。维基由玩家维护：平衡性更新后请在游戏中核实。"
+};
+T.pl={
+ title:"Arsenał łowcy",sub:"Katalog {n} broni do kupienia · Hunt: Showdown 1896",
+ tabs:{list:"Katalog",table:"Tabela",cmp:"Porównanie",book:"Księga gości"},views:"Widoki",
+ search:"Szukaj broni…",fSize:"Rozmiar",fClass:"Amunicja",more:"Więcej filtrów",fSp:"Amunicja specjalna",any:"Dowolna",fPr:"Maks. cena",noLimit:"bez limitu",fVar:"Ukryj warianty (luneta, tłumik, bagnet…)",
+ fSort:"Sortuj według",asc:"↑ rosnąco",desc:"↓ malejąco",reset:"Resetuj",
+ count:function(a,b){return a+" z "+b+" broni"},
+ none:"Żadna broń nie pasuje do tych filtrów.",
+ hint:"Dotknij broni, aby zobaczyć statystyki, amunicję i dobre połączenia.",
+ tableNote:"Wartości z amunicją podstawową. Dotknij nagłówka, aby sortować, a nazwy, aby otworzyć kartę.",
+ cls:{C:"Kompaktowa",M:"Średnia",L:"Długa",S:"Specjalna długa",B:"Śrut",X:"Specjalna",H:"Wręcz"},
+ st:{n:["Nazwa","Broń"],p:["Cena","Cena"],s:["Rozmiar","Rozmiar"],a:["Typ amunicji","Amunicja"],am:["Wybrana amunicja","Nabój"],
+     d:["Obrażenia","Obraż."],r:["Zasięg opadu","Opad"],m:["Prędkość wylotowa","Prędkość"],f:["Szybkostrzelność","Szybk."],c:["Czas cyklu","Cykl"],
+     v:["Odrzut pionowy","Odrzut"],sp:["Rozrzut","Rozrzut"],sw:["Kołysanie","Kołys."],rl:["Czas przeładowania","Przeład."],ex:["Amunicja zapasowa","Zapas"],
+     ld:["Załadowane","Załad."],ml:["Atak wręcz","Wręcz"],mh:["Silny atak wręcz","S. wręcz"],st:["Wytrzymałość na cios","Wytrz."]},
+ ammo:"Amunicja",base:"Podstawowa",b1:"Lufa główna",b2:"Druga lufa (śrut)",b2s:"2. lufa",
+ scarce:"Rzadka: tylko w misjach",apr:"Cena: {p}",
+ perf:"Osiągi",
+ lgBars:"Szary pasek: amunicja podstawowa. Kolorowy pasek: wybrana amunicja, nałożona i półprzezroczysta. Skala: od 0 do maksimum arsenału.",
+ lgDelta:"▲ lepiej, ▼ gorzej. Przy odrzucie, rozrzucie, kołysaniu, cyklu i przeładowaniu niższa wartość jest lepsza.",
+ perSlot:"{s} miejsca po {e}",
+ facts:"Szczegóły",light:"Lekki atak",heavy:"Silny atak",stl:"Wytrzymałość (lekki)",sth:"Wytrzymałość (silny)",
+ b2facts:"Druga lufa, amunicja podstawowa",
+ notes:"Do sprawdzenia",
+ mm:"{s}: sekcja amunicji na wiki zaczyna od {o}, a tabelka broni podaje {b}.",
+ b2note:"Druga lufa: wiki podaje jedną wartość obrażeń, rozrzutu i kołysania dla całej broni; zmiany amunicji liczone są od niej.",
+ altP:"The Bayou Index podaje cenę {x}.",altM:"The Bayou Index podaje prędkość wylotową {x}.",altD:"The Bayou Index podaje {x} obrażeń.",
+ wn:{nMakoClaw:"Walka wręcz: wiki podaje 120 dla lekkiego i 54 dla silnego ataku. Wygląda na zamienione lub niepełne.",
+     nLebelTalon:"Silny atak wręcz: 54 na wiki, podczas gdy inne warianty Talon mają 330.",
+     nBow:"Wiki nazywa obrażenia łuku „zmiennymi”: zależą od naciągu cięciwy.",
+     nBolts:"Bełty można podnieść i użyć ponownie."},
+ fx:{bL:"Lekkie krwawienie",bM:"Średnie krwawienie",bI:"Silne krwawienie",fM:"Średnie podpalenie",fI:"Silne podpalenie",pL:"Lekkie zatrucie",pM:"Średnie zatrucie",pI:"Silne zatrucie",
+     q:"Cichszy dźwięk",rec:"Można podnieść i użyć ponownie",xsd:"Wybucha po krótkim czasie",cw:"Przy trafieniu tworzy mały zwój drutu kolczastego (6–8 pasm)",
+     x2s:"Wybucha 2 sekundy po wystrzeleniu i powoduje krwawienie",nChaos:"Wydaje losowy odgłos strzału w miejscu trafienia",
+     nChoke:"Tworzy w miejscu trafienia małą, krótkotrwałą chmurę Choke",
+     nDragon:"Tworzy w miejscu trafienia małą, krótkotrwałą kałużę ognia; znika w kontakcie z chmurą Choke",
+     nPoisonCloud:"Tworzy w miejscu trafienia małą, krótkotrwałą trującą chmurę",
+     nFragArrow:"Wartość w grze łączy minimalne obrażenia trafienia i wybuchu: 25 do 50 przy trafieniu zależnie od naciągu, do 111 od wybuchu",
+     nPoisonArrow:"Trafienie zadaje stałe 10 obrażeń od trucizny; łączne obrażenia strzały są dla równowagi zmniejszone",
+     nWaxed:"Według wiki wartość w grze to nie obrażenia w meczu: 25 przy trafieniu i do 126 od wybuchu",
+     nSlug157:"Według wiki wartość w grze to nie obrażenia w meczu: ten pocisk zadaje 157, jak inne strzelby na dwa miejsca",
+     nNagantSub:"Amunicja zapasowa: wiki podaje 21 → 14, choć w innych Nagantach Subsonic zwiększa zapas. Wątpliwa wartość"},
+ fxFo:"Spadek obrażeń od {n} m",fxIg:"Podpala łowcę jednym strzałem do {n} m",
+ fam:"Ta sama rodzina",pair:"Dobrze łączy się z",pair5:"W 5 miejscach",pairQ:"Z Quartermaster (6 miejsc)",
+ pairNone:"Ta broń zajmuje już wszystkie 5 miejsc.",
+ pairNote:"Wyliczone propozycje: uzupełniający zasięg, mieści się w wolnych miejscach, podobna cena. To nie ranking graczy.",
+ role:{close:"krótki dystans",mid:"średni dystans",long:"daleki dystans"},
+ add:"＋ Dodaj do porównania",rem:"✓ W porównaniu (usuń)",full:"Porównanie pełne: usuń wykres",wiki:"Strona wiki ↗",
+ cmpEmpty:"Porównanie jest puste. Otwórz broń w katalogu, wybierz ewentualnie amunicję i dotknij „Dodaj do porównania”. Maksymalnie cztery wykresy.",
+ toList:"Przejdź do katalogu",hintW:"Kliknij broń: jej karta pojawi się po prawej.",pick:"Wybierz broń z listy, aby zobaczyć tu jej kartę.",
+ gbTitle:"Księga gości",gbIntro:"Opinia, dobre połączenie broni, zauważony błąd? Zostaw słowo innym łowcom. Wiadomości widzą wszyscy, którzy mogą otworzyć tę stronę.",
+ gbSig:"Podpis",gbSigPh:"Twoje imię łowcy",gbMsg:"Wiadomość",gbMsgPh:"Twoje słowo…",gbSend:"Wpisz się do księgi",gbSending:"Wysyłanie…",
+ gbLeft:"Pozostało znaków: {n}",gbDone:"Dziękujemy, twój wpis jest w księdze.",gbNeed:"Wpisz podpis i wiadomość.",
+ gbEmpty:"Nikt jeszcze się nie wpisał. Bądź pierwszy!",gbWait:"Otwieranie księgi…",
+ gbSlow:"Księga gości teraz nie odpowiada; wyświetlana treść może być nieaktualna.",
+ gbOff:"Księga gości działa na stronie opublikowanej na claude.ai, dla zalogowanych osób z dostępem.",
+ gbErr:"Księga gości jest teraz niedostępna.",
+ gbRO:"Możesz czytać księgę gości, ale twój obecny dostęp nie pozwala w niej pisać.",
+ gbFail:"Nie udało się zapisać wiadomości. Spróbuj za chwilę.",
+ gbFull:"Księga gości jest pełna: właściciel musi zrobić miejsce.",
+ gbDel:"Usuń",gbConfirm:"Potwierdź usunięcie",gbMod:"Jesteś właścicielem strony: możesz usunąć każdą wiadomość.",gbAnon:"Anonimowy łowca",
+ ctTitle:"Kontakt i źródła",ctContact:"Kontakt",ctText:"Pytanie, pomysł albo błędna liczba? Znajdziesz mnie na Twitchu.",
+ copy:"Kopiuj",copied:"Skopiowano!",copySel:"Zaznaczono: skopiuj",ctSrc:"Źródła",ctWiki:"statystyki i amunicja, strona dla każdej broni",ctBayou:"weryfikacja cen, obrażeń, prędkości i rozmiaru",
+ dropTitle:"Opad pocisku",dist:"Odległość",head:"głowa",dropAt:"Na {d}:",dropOver:"ponad 60 cm",
+ dropAria:"Wykres opadu pocisku w zależności od odległości dla porównywanych broni",
+ dropCap:"Szacunek: każda krzywa przechodzi przez zasięg opadu z wiki, czyli odległość, na której pocisk opadł o około 20 cm, wysokość głowy (znacznik pokazuje ten punkt), i biegnie po paraboli. Gra nie publikuje dokładnej trajektorii: to przybliżenie do porównań. Broń do walki wręcz nie jest pokazana.",
+ cmpTitle:"Nałożone wykresy",radarAria:"Wykres radarowy wybranych broni; wartości są w tabeli poniżej.",
+ cmpCap:"Każda oś biegnie od 0 w środku do wartości na krawędzi. Osie oznaczone ↓ (po lewej): mniej znaczy lepiej. Pozostałe: więcej znaczy lepiej.",
+ cmpTap:"Dotknij punktu, aby odczytać wartość, lub nazwy, aby wyróżnić wykres.",
+ nullNote:"Pusty punkt w środku: brak wartości na wiki.",meleeNote:"Broń do walki wręcz: bez wykresu, wartości w tabeli.",
+ best:"Podkreślone: najlepsza wartość w wierszu.",clear:"Wyczyść",remove:"Usuń",na:"brak na wiki",colon:": ",
+ gloss:"Co oznaczają statystyki",
+ g:[["Rozmiar","od 1 do 5 miejsc na broń. Łowca nosi dwie bronie o łącznym rozmiarze 5 miejsc, 6 z cechą Quartermaster."],
+    ["Zasięg opadu","odległość w metrach, na której pocisk opada o mniej więcej wysokość głowy (20 cm) poniżej punktu celowania."],
+    ["Prędkość wylotowa","prędkość pocisku w metrach na sekundę."],
+    ["Szybkostrzelność","strzały na minutę, z czasem przeładowania."],
+    ["Czas cyklu","czas w sekundach, po którym broń jest gotowa do kolejnego strzału."],
+    ["Odrzut pionowy","siła pionowego odrzutu po strzale, w stopniach."],
+    ["Rozrzut","względny rozrzut celownika przy strzale z biodra."],
+    ["Kołysanie","względne kołysanie broni podczas celowania przez przyrządy."],
+    ["Czas przeładowania","czas w sekundach na pełne przeładowanie pustej broni."],
+    ["Amunicja zapasowa","naboje poza załadowanymi. Niektóre bronie mają dwa miejsca na zapas; suma zakłada tę samą amunicję w obu."]],
+ src:"Statystyki i amunicja zebrane 17 listopada 2026 r. z {wiki}, strona dla każdej broni; każda karta prowadzi do swojej strony. Cenę, rozmiar, obrażenia i prędkość sprawdzono z {bayou}: różnice zaznaczono w danej karcie. Gdy wiki przeczy sobie między tabelką broni a sekcją amunicji, pokazano obie wartości.",
+ excl:"Nie ma ich na liście, bo nie można ich kupić: Wildland, Homestead 78, Shredder, Flame Rifle i przedmioty znalezione w misjach. Wiki prowadzą gracze: po aktualizacji balansu sprawdź w grze."
+};
+T.pt={
+ title:"Arsenal do caçador",sub:"Catálogo das {n} armas compráveis · Hunt: Showdown 1896",
+ tabs:{list:"Catálogo",table:"Tabela",cmp:"Comparar",book:"Livro de visitas"},views:"Visualizações",
+ search:"Buscar uma arma…",fSize:"Tamanho",fClass:"Munição",more:"Mais filtros",fSp:"Munição especial",any:"Qualquer",fPr:"Preço máx.",noLimit:"sem limite",fVar:"Ocultar variantes (mira, silenciador, baioneta…)",
+ fSort:"Ordenar por",asc:"↑ crescente",desc:"↓ decrescente",reset:"Redefinir",
+ count:function(a,b){return a+" de "+b+" armas"},
+ none:"Nenhuma arma corresponde a esses filtros.",
+ hint:"Toque numa arma para ver atributos, munições e boas combinações.",
+ tableNote:"Valores com a munição básica. Toque num cabeçalho para ordenar e num nome para abrir a ficha.",
+ cls:{C:"Compacta",M:"Média",L:"Longa",S:"Longa especial",B:"Cartuchos",X:"Especial",H:"Corpo a corpo"},
+ st:{n:["Nome","Arma"],p:["Preço","Preço"],s:["Tamanho","Tam."],a:["Tipo de munição","Munição"],am:["Munição escolhida","Bala"],
+     d:["Dano","Dano"],r:["Alcance de queda","Queda"],m:["Velocidade inicial","Veloc."],f:["Cadência","Cadência"],c:["Tempo de ciclo","Ciclo"],
+     v:["Recuo vertical","Recuo"],sp:["Dispersão","Disp."],sw:["Oscilação","Oscil."],rl:["Tempo de recarga","Recarga"],ex:["Munição extra","Extra"],
+     ld:["Carregado","Carreg."],ml:["Corpo a corpo","C. a c."],mh:["Golpe pesado","G. pesado"],st:["Vigor por golpe","Vigor"]},
+ ammo:"Munição",base:"Básica",b1:"Cano principal",b2:"Segundo cano (cartuchos)",b2s:"2º cano",
+ scarce:"Rara: só encontrada em missões",apr:"Preço: {p}",
+ perf:"Desempenho",
+ lgBars:"Barra cinza: munição básica. Barra colorida: munição escolhida, sobreposta e semitransparente. Escala: de 0 ao máximo do arsenal.",
+ lgDelta:"▲ melhor, ▼ pior. Para recuo, dispersão, oscilação, ciclo e recarga, valor menor é melhor.",
+ perSlot:"{s} espaços de {e}",
+ facts:"Detalhes",light:"Ataque leve",heavy:"Ataque pesado",stl:"Vigor (leve)",sth:"Vigor (pesado)",
+ b2facts:"Segundo cano, munição básica",
+ notes:"A verificar",
+ mm:"{s}: a seção de munições da wiki parte de {o}, mas o quadro da arma indica {b}.",
+ b2note:"Segundo cano: a wiki dá um único valor de dano, dispersão e oscilação para a arma inteira; as mudanças de munição partem dele.",
+ altP:"The Bayou Index indica o preço de {x}.",altM:"The Bayou Index indica velocidade inicial de {x}.",altD:"The Bayou Index indica {x} de dano.",
+ wn:{nMakoClaw:"Corpo a corpo: a wiki indica 120 no ataque leve e 54 no pesado. Parece invertido ou incompleto.",
+     nLebelTalon:"Golpe pesado: 54 na wiki, enquanto as outras variantes Talon têm 330.",
+     nBow:"A wiki chama o dano do arco de “variável”: depende de quanto a corda é puxada.",
+     nBolts:"Os virotes podem ser recuperados e reutilizados."},
+ fx:{bL:"Sangramento leve",bM:"Sangramento médio",bI:"Sangramento intenso",fM:"Queimadura média",fI:"Queimadura intensa",pL:"Veneno leve",pM:"Veneno médio",pI:"Veneno intenso",
+     q:"Som reduzido",rec:"Pode ser recuperada e reutilizada",xsd:"Explode após pouco tempo",cw:"No impacto, cria um pequeno rolo de arame farpado (6–8 fios)",
+     x2s:"Explode 2 segundos após o disparo, causando sangramento",nChaos:"Faz um som de tiro aleatório no ponto de impacto",
+     nChoke:"Cria no ponto de impacto uma pequena nuvem Choke de curta duração",
+     nDragon:"Cria no ponto de impacto uma pequena poça de fogo de curta duração; some ao tocar uma nuvem Choke",
+     nPoisonCloud:"Cria no ponto de impacto uma pequena nuvem de veneno de curta duração",
+     nFragArrow:"O valor no jogo junta o dano mínimo de impacto e o de explosão: 25 a 50 no impacto conforme a tensão, até 111 na explosão",
+     nPoisonArrow:"O impacto causa 10 de dano fixo de veneno; o dano total da flecha é reduzido para compensar",
+     nWaxed:"Segundo a wiki, o valor no jogo não é o dano na partida: 25 no impacto e até 126 na explosão",
+     nSlug157:"Segundo a wiki, o valor no jogo não é o dano na partida: esta bala causa 157, como outras espingardas de dois espaços",
+     nNagantSub:"Munição extra: a wiki indica 21 → 14, embora a Subsonic aumente a reserva nos outros Nagants. Valor duvidoso"},
+ fxFo:"O dano cai a partir de {n} m",fxIg:"Incendeia caçadores com um tiro até {n} m",
+ fam:"Mesma família",pair:"Combina bem com",pair5:"Nos 5 espaços",pairQ:"Com Quartermaster (6 espaços)",
+ pairNone:"Esta arma já ocupa os 5 espaços.",
+ pairNote:"Sugestões calculadas: alcance complementar, cabe nos espaços restantes, preço parecido. Não é um ranking de jogadores.",
+ role:{close:"curta distância",mid:"média distância",long:"longa distância"},
+ add:"＋ Adicionar à comparação",rem:"✓ Na comparação (remover)",full:"Comparação cheia: remova um traço",wiki:"Página da wiki ↗",
+ cmpEmpty:"A comparação está vazia. Abra uma arma no catálogo, escolha uma munição se quiser e toque em “Adicionar à comparação”. No máximo quatro traços.",
+ toList:"Ir para o catálogo",hintW:"Clique numa arma: a ficha aparece à direita.",pick:"Escolha uma arma na lista para ver a ficha aqui.",
+ gbTitle:"Livro de visitas",gbIntro:"Uma opinião, uma combinação que funciona, um erro encontrado? Deixe uma palavra para os outros caçadores. As mensagens ficam visíveis para todos que podem abrir esta página.",
+ gbSig:"Assinatura",gbSigPh:"Seu nome de caçador",gbMsg:"Mensagem",gbMsgPh:"Sua palavra…",gbSend:"Assinar o livro",gbSending:"Enviando…",
+ gbLeft:"{n} caracteres restantes",gbDone:"Obrigado, sua mensagem está no livro.",gbNeed:"Escreva uma assinatura e uma mensagem.",
+ gbEmpty:"Ninguém assinou ainda. Seja o primeiro!",gbWait:"Abrindo o livro…",
+ gbSlow:"O livro de visitas não está respondendo agora; o que aparece pode estar desatualizado.",
+ gbOff:"O livro de visitas funciona na página publicada no claude.ai, para pessoas conectadas com acesso.",
+ gbErr:"O livro de visitas está indisponível no momento.",
+ gbRO:"Você pode ler o livro de visitas, mas seu acesso atual não permite escrever nele.",
+ gbFail:"Não foi possível salvar a mensagem. Tente de novo em instantes.",
+ gbFull:"O livro de visitas está cheio: o dono precisa liberar espaço.",
+ gbDel:"Remover",gbConfirm:"Confirmar remoção",gbMod:"Você é dono desta página: pode remover qualquer mensagem.",gbAnon:"Caçador anônimo",
+ ctTitle:"Contato e fontes",ctContact:"Contato",ctText:"Uma pergunta, uma ideia ou um número errado? Me encontre na Twitch.",
+ copy:"Copiar",copied:"Copiado!",copySel:"Selecionado: copie",ctSrc:"Fontes",ctWiki:"atributos e munições, uma página por arma",ctBayou:"conferência de preços, dano, velocidade e tamanho",
+ dropTitle:"Queda da bala",dist:"Distância",head:"cabeça",dropAt:"A {d}:",dropOver:"mais de 60 cm",
+ dropAria:"Gráfico da queda da bala conforme a distância para as armas comparadas",
+ dropCap:"Estimativa: cada curva passa pelo alcance de queda da wiki, a distância em que a bala caiu cerca de 20 cm, a altura de uma cabeça (o marcador mostra esse ponto), e segue uma parábola. O jogo não publica a trajetória exata: é uma aproximação para comparar. Armas corpo a corpo não aparecem.",
+ cmpTitle:"Traços sobrepostos",radarAria:"Gráfico de radar das armas escolhidas; os valores estão na tabela abaixo.",
+ cmpCap:"Cada eixo vai de 0 no centro até o valor escrito na borda. Eixos marcados com ↓ (à esquerda): menor é melhor. Os outros: maior é melhor.",
+ cmpTap:"Toque num ponto para ler o valor, ou num nome para isolar o traço.",
+ nullNote:"Ponto vazado no centro: valor ausente na wiki.",meleeNote:"Arma corpo a corpo: sem traço, valores na tabela.",
+ best:"Sublinhado: melhor valor da linha.",clear:"Limpar tudo",remove:"Remover",na:"ausente na wiki",colon:": ",
+ gloss:"O que significam os atributos",
+ g:[["Tamanho","de 1 a 5 espaços por arma. Um caçador leva duas armas que somam 5 espaços, 6 com a característica Quartermaster."],
+    ["Alcance de queda","distância, em metros, em que o projétil caiu cerca de uma altura de cabeça (20 cm) abaixo do ponto de mira."],
+    ["Velocidade inicial","velocidade do projétil, em metros por segundo."],
+    ["Cadência","disparos por minuto, incluindo a recarga."],
+    ["Tempo de ciclo","tempo, em segundos, até a arma estar pronta para o próximo disparo."],
+    ["Recuo vertical","força do recuo vertical após um disparo, em graus."],
+    ["Dispersão","dispersão relativa da mira ao atirar sem mirar."],
+    ["Oscilação","oscilação relativa da arma ao mirar."],
+    ["Tempo de recarga","tempo, em segundos, para recarregar totalmente a arma vazia."],
+    ["Munição extra","balas além das carregadas. Algumas armas têm dois espaços de reserva; o total supõe a mesma munição nos dois."]],
+ src:"Atributos e munições coletados em 17 de novembro de 2026 na {wiki}, uma página por arma; cada ficha leva à sua página. Preço, tamanho, dano e velocidade foram conferidos com {bayou}: as diferenças estão indicadas na ficha correspondente. Quando a wiki se contradiz entre o quadro da arma e a seção de munições, os dois valores são mostrados.",
+ excl:"Fora da lista por não poderem ser compradas: Wildland, Homestead 78, Shredder, Flame Rifle e itens encontrados em missões. A wiki é mantida por jogadores: após uma atualização de balanceamento, confira no jogo."
+};
+/*LANGS_END*/
+var LANGS=[["fr","Français"],["en","English"],["de","Deutsch"],["ru","Русский"],["zh","简体中文"],["pl","Polski"],["pt","Português (BR)"]];
+var LOC={fr:"fr-FR",en:"en-GB",de:"de-DE",ru:"ru-RU",zh:"zh-CN",pl:"pl-PL",pt:"pt-BR"},HL={fr:"fr",en:"en",de:"de",ru:"ru",zh:"zh-Hans",pl:"pl",pt:"pt-BR"},COMMA={fr:1,de:1,ru:1,pl:1,pt:1},SUF={fr:1,de:1,ru:1,pl:1};
 
 var state={dropAt:null,lang:"fr",view:"list",q:"",sizes:{},classes:{},special:"",novar:false,pmax:PMAX,sort:"n",dir:1,open:null,sel:{},cmp:[],iso:null,read:""};
-try{var sl=localStorage.getItem("arsenal-lang");if(sl==="fr"||sl==="en")state.lang=sl}catch(e){}
+try{var sl=localStorage.getItem("arsenal-lang");if(sl&&T[sl])state.lang=sl}catch(e){}
 var BY={};W.forEach(function(w){BY[w.n]=w});
 
 function $(id){return document.getElementById(id)}
@@ -476,13 +900,13 @@ function syncHash(){var x=HASH[state.view];if(x&&location.hash.slice(1)!==x){try
 var GBN=30,GBS=40,GBT=600,DB=null,RT=!!(window.claude&&typeof window.claude.use==="function");
 var GB={st:"wait",list:[],docs:{},uid:null,known:false,owner:false,ro:false,busy:false,note:"",arm:null,armT:null,sig:"",txt:""};
 try{GB.sig=localStorage.getItem("arsenal-sig")||""}catch(e){}
-function t(k){return T[state.lang][k]}
+function t(k){var v=T[state.lang][k];return v===undefined?T.en[k]:v}
 function h(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function li(){return state.lang==="fr"?0:1}
-function num(x){if(x===null||x===undefined)return"–";var s=String(Math.round(x*10)/10);return state.lang==="fr"?s.replace(".",","):s}
-function unit(k){var u=UNIT[k];return!u?"":typeof u==="string"?u:u[state.lang]}
+function num(x){if(x===null||x===undefined)return"–";var s=String(Math.round(x*10)/10);return COMMA[state.lang]?s.replace(".",","):s}
+function unit(k){var u=UNIT[k];return!u?"":typeof u==="string"?u:(u[state.lang]||u.en)}
 function val(k,x){if(x===null||x===undefined)return"–";var u=unit(k);return num(x)+(u?(u==="°"?"°":" "+u):"")}
-function money(x){return state.lang==="fr"?x+" $":"$"+x}
+function money(x){return SUF[state.lang]?x+" $":"$"+x}
 function sl1(k){return t("st")[k][0]}
 function sl2(k){return t("st")[k][1]}
 function aname(k){return AMMO[k]?AMMO[k][li()]:k}
@@ -821,7 +1245,7 @@ function gbStatus(){
  return GB.owner?t("gbMod"):"";
 }
 function gbIso(at){try{return new Date(at).toISOString()}catch(e){return""}}
-function gbDate(at){try{return new Date(at).toLocaleString(state.lang==="fr"?"fr-FR":"en-GB",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})}catch(e){return""}}
+function gbDate(at){try{return new Date(at).toLocaleString(LOC[state.lang]||"en-GB",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})}catch(e){return""}}
 function gbRead(snap){
  var list=[],docs={};
  snap.docs.forEach(function(d){
@@ -949,8 +1373,8 @@ function tabsHTML(){
 function priceOut(){$("o-pr").textContent=state.pmax>=PMAX?t("noLimit"):"≤ "+money(state.pmax)}
 function dirOut(){$("b-dir").textContent=state.dir>0?t("asc"):t("desc")}
 function chrome(){
- document.documentElement.lang=state.lang;
- Array.prototype.forEach.call(document.querySelectorAll(".lang button"),function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===state.lang)});
+ document.documentElement.lang=HL[state.lang]||state.lang;$("lang-sel").value=state.lang;
+ 
  $("t-title").textContent=t("title");$("t-sub").textContent=t("sub").replace("{n}",W.length);
  $("l-q").textContent=t("search");$("q").placeholder=t("search");
  $("l-size").textContent=t("fSize");$("l-class").textContent=t("fClass");$("l-more").textContent=t("more");
@@ -1013,9 +1437,8 @@ $("view").addEventListener("pointerover",function(e){
  var el=e.target.closest&&e.target.closest('[data-act="pt"]');if(el&&e.pointerType==="mouse"){state.read=el.getAttribute("data-t");$("rd").textContent=state.read}
 });
 $("tabs").addEventListener("click",function(e){var b=e.target.closest("button[data-v]");if(b)setView(b.getAttribute("data-v"))});
-document.querySelector(".lang").addEventListener("click",function(e){
- var b=e.target.closest("button[data-lang]");if(!b)return;
- state.lang=b.getAttribute("data-lang");state.read="";
+$("lang-sel").addEventListener("change",function(){
+ state.lang=T[this.value]?this.value:"fr";state.read="";
  try{localStorage.setItem("arsenal-lang",state.lang)}catch(err){}
  chrome();view();
 });
