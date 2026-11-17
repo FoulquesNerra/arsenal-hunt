@@ -86,7 +86,7 @@ select{min-width:0;max-width:100%;padding:7px 8px;border:1px solid var(--edge);b
 .hint{margin-top:6px}
 
 .list{list-style:none;margin:14px 0 0;padding:0;border-top:3px double var(--edge)}
-.item{border-bottom:1px solid var(--line);scroll-margin-top:calc(70px + env(safe-area-inset-top,0px))}
+.item{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;border-bottom:1px solid var(--line);scroll-margin-top:calc(70px + env(safe-area-inset-top,0px))}
 .row{display:grid;grid-template-columns:minmax(0,1fr) auto 76px;gap:2px 12px;align-items:center;width:100%;padding:11px 6px;border:0;background:transparent;text-align:left}
 .row:hover{background:rgba(209,170,88,.07)}
 .item.open{margin:14px -6px;border-bottom:0}
@@ -260,6 +260,35 @@ footer dd{display:inline;margin:0}
 .rd2 svg{flex:none;width:14px;height:14px}
 @media (min-width:700px){.ctg{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px 36px}}
 .lang select{padding:5px 8px;border:1px solid var(--edge);border-radius:3px;background:#0f0b07;color:var(--ink);font:700 .8rem/1.2 var(--text);letter-spacing:.04em;cursor:pointer}
+.kit .kopt{display:flex;flex-wrap:wrap;gap:2px 18px}
+.kbud{display:flex;flex-direction:column;gap:6px}
+.kslots{display:grid;gap:14px}
+.kslot{display:flex;flex-direction:column;gap:6px;min-width:0;padding:12px;border:1px dashed var(--edge);border-radius:3px}
+.kslot h4{margin:0;color:var(--acc);font:400 1.15rem/1.2 var(--sc);letter-spacing:.03em}
+.opt[disabled]{opacity:.35;cursor:not-allowed;box-shadow:none}
+.kitres{display:flex;flex-direction:column;gap:8px}
+.kres{display:flex;flex-direction:column;margin:0;padding:0;list-style:none}
+.kres li{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:11px 0;border-top:1px dashed var(--line)}
+.kpair{display:flex;flex:1 1 320px;flex-wrap:wrap;align-items:center;gap:6px 12px;min-width:0}
+.kw{display:flex;align-items:center;gap:8px;min-width:0}
+.kwt{display:flex;flex-direction:column;min-width:0}
+.lk0{all:unset;cursor:pointer;color:var(--ink);font:1.02rem/1.2 var(--sc);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;overflow-wrap:anywhere}
+.lk0:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.kwt small{color:var(--mute);font-size:.76rem}
+.kplus{color:var(--mute);font:1.2rem/1 var(--sc)}
+.ktot{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.ktot span{display:flex;flex-direction:column;text-align:right}
+.ktot b{font-size:1.08rem;font-variant-numeric:tabular-nums lining-nums}
+.ktot small{color:var(--mute);font-size:.74rem}
+@media (min-width:700px){.kslots{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media (max-width:599px){.tabs{flex-wrap:wrap}.tabs button{flex:1 1 30%}}
+.item>.card{grid-column:1/-1}
+.fav{flex:none;width:34px;height:40px;margin:0;padding:0;border:0;background:transparent;color:var(--mute);font-size:1.25rem;line-height:1;cursor:pointer}
+.fav[aria-pressed="true"]{color:#d9a63c;text-shadow:0 0 6px rgba(217,166,60,.45)}
+.item.open .fav[aria-pressed="true"],.ph .fav[aria-pressed="true"]{color:#a06a00;text-shadow:none}
+.fav:hover{color:var(--brass)}
+.ph .fav{font-size:1.6rem}
+.ffav{padding:0}
 </style></head><body>
 
 <div class="wrap">
@@ -293,6 +322,7 @@ footer dd{display:inline;margin:0}
       <label for="fsort" id="l-sort"></label><select id="fsort"></select>
       <button type="button" class="btn" id="b-dir"></button>
       <button type="button" class="btn" id="b-reset"></button>
+      <label class="chk ffav"><input id="ffav" type="checkbox"> <span id="l-fav"></span></label>
     </div>
     <p class="cnt" id="cnt" aria-live="polite"></p>
   </section>
@@ -884,6 +914,16 @@ T.pt={
  excl:"Fora da lista por não poderem ser compradas: Wildland, Homestead 78, Shredder, Flame Rifle e itens encontrados em missões. A wiki é mantida por jogadores: após uma atualização de balanceamento, confira no jogo."
 };
 /*LANGS_END*/
+(function(){var K={
+fr:{favAdd:"Ajouter aux favoris",favRem:"Retirer des favoris",fFav:"★ Favoris uniquement",favNone:"Aucun favori pour l’instant : touchez ☆ à côté d’une arme pour l’ajouter.",kitOne:"Un seul duo possible, à {a}.",kitTab:"Équipement",kitTitle:"Constructeur d’équipement",kitIntro:"Choisissez vos règles, puis ce que vous voulez pour chaque arme : le site liste tous les duos possibles, du moins cher au plus cher.",kitQM:"Quartermaster (6 emplacements)",kitVar:"Inclure les variantes",kitMel:"Inclure les armes de mêlée",kitCap:"Les deux armes ne doivent pas dépasser {n} emplacements au total.",kitBudget:"Budget",kitTotal:"Prix total du duo",kitEach:"Prix par arme",kitMax:"Prix max",kitW1:"Arme 1",kitW2:"Arme 2",kitSize:"Taille",kitAmmo:"Munition",kitAll:"Toutes",kitReset:"Tout réinitialiser",kitRes:"Combinaisons",kitCount:"{n} duos possibles, de {a} à {b}, du moins cher au plus cher.",kitNone:"Aucun duo ne respecte ces critères. Élargissez la taille, la munition ou le budget.",kitSlots:"{a} / {b} emplacements",kitCmp:"Comparer ce duo",kitMore:"Afficher {n} de plus"},
+en:{favAdd:"Add to favourites",favRem:"Remove from favourites",fFav:"★ Favourites only",favNone:"No favourites yet: tap ☆ next to a weapon to add it.",kitOne:"Only 1 possible pair, at {a}.",kitTab:"Loadout",kitTitle:"Loadout builder",kitIntro:"Pick your rules, then what you want for each weapon: the site lists every possible pair, cheapest first.",kitQM:"Quartermaster (6 slots)",kitVar:"Include variants",kitMel:"Include melee weapons",kitCap:"Both weapons must fit in {n} slots in total.",kitBudget:"Budget",kitTotal:"Total price of the pair",kitEach:"Price per weapon",kitMax:"Max price",kitW1:"Weapon 1",kitW2:"Weapon 2",kitSize:"Size",kitAmmo:"Ammo",kitAll:"Any",kitReset:"Reset all",kitRes:"Combinations",kitCount:"{n} possible pairs, from {a} to {b}, cheapest first.",kitNone:"No pair matches these criteria. Widen the size, ammo or budget.",kitSlots:"{a} / {b} slots",kitCmp:"Compare this pair",kitMore:"Show {n} more"},
+de:{favAdd:"Zu Favoriten hinzufügen",favRem:"Aus Favoriten entfernen",fFav:"★ Nur Favoriten",favNone:"Noch keine Favoriten: Tippe auf ☆ neben einer Waffe, um sie hinzuzufügen.",kitOne:"Nur 1 mögliches Paar, für {a}.",kitTab:"Ausrüstung",kitTitle:"Ausrüstungs-Planer",kitIntro:"Lege deine Regeln fest und was du für jede Waffe willst: Die Seite listet alle möglichen Paare, das günstigste zuerst.",kitQM:"Quartermaster (6 Plätze)",kitVar:"Varianten einbeziehen",kitMel:"Nahkampfwaffen einbeziehen",kitCap:"Beide Waffen dürfen zusammen höchstens {n} Plätze belegen.",kitBudget:"Budget",kitTotal:"Gesamtpreis des Paares",kitEach:"Preis pro Waffe",kitMax:"Höchstpreis",kitW1:"Waffe 1",kitW2:"Waffe 2",kitSize:"Größe",kitAmmo:"Munition",kitAll:"Alle",kitReset:"Alles zurücksetzen",kitRes:"Kombinationen",kitCount:"{n} mögliche Paare, von {a} bis {b}, das günstigste zuerst.",kitNone:"Kein Paar erfüllt diese Kriterien. Erweitere Größe, Munition oder Budget.",kitSlots:"{a} / {b} Plätze",kitCmp:"Dieses Paar vergleichen",kitMore:"{n} weitere anzeigen"},
+ru:{favAdd:"Добавить в избранное",favRem:"Убрать из избранного",fFav:"★ Только избранное",favNone:"Избранного пока нет: нажмите ☆ рядом с оружием, чтобы добавить его.",kitOne:"Только 1 пара, за {a}.",kitTab:"Снаряжение",kitTitle:"Подбор снаряжения",kitIntro:"Задайте правила и пожелания для каждого оружия: сайт покажет все возможные пары, начиная с самой дешёвой.",kitQM:"Quartermaster (6 ячеек)",kitVar:"Включить варианты",kitMel:"Включить оружие ближнего боя",kitCap:"Два оружия вместе занимают не больше {n} ячеек.",kitBudget:"Бюджет",kitTotal:"Общая цена пары",kitEach:"Цена за оружие",kitMax:"Макс. цена",kitW1:"Оружие 1",kitW2:"Оружие 2",kitSize:"Размер",kitAmmo:"Патроны",kitAll:"Все",kitReset:"Сбросить всё",kitRes:"Сочетания",kitCount:"Возможных пар: {n}, от {a} до {b}, сначала самые дешёвые.",kitNone:"Нет пар под эти условия. Расширьте размер, патроны или бюджет.",kitSlots:"{a} / {b} ячеек",kitCmp:"Сравнить эту пару",kitMore:"Показать ещё {n}"},
+zh:{favAdd:"加入收藏",favRem:"取消收藏",fFav:"★ 仅显示收藏",favNone:"还没有收藏：点击武器旁的 ☆ 即可收藏。",kitOne:"仅 1 种组合，{a}。",kitTab:"配装",kitTitle:"配装助手",kitIntro:"设定规则以及每把武器的要求：网站会列出所有可能的组合，从最便宜的开始。",kitQM:"Quartermaster（6 个栏位）",kitVar:"包含变体",kitMel:"包含近战武器",kitCap:"两把武器合计不超过 {n} 个栏位。",kitBudget:"预算",kitTotal:"组合总价",kitEach:"单把价格",kitMax:"最高价格",kitW1:"武器 1",kitW2:"武器 2",kitSize:"尺寸",kitAmmo:"弹药",kitAll:"全部",kitReset:"全部重置",kitRes:"组合",kitCount:"共 {n} 种组合，{a} 至 {b}，从最便宜的开始。",kitNone:"没有符合条件的组合。请放宽尺寸、弹药或预算。",kitSlots:"{a} / {b} 个栏位",kitCmp:"对比这组搭配",kitMore:"再显示 {n} 个"},
+pl:{favAdd:"Dodaj do ulubionych",favRem:"Usuń z ulubionych",fFav:"★ Tylko ulubione",favNone:"Brak ulubionych: dotknij ☆ obok broni, aby ją dodać.",kitOne:"Tylko 1 możliwa para, za {a}.",kitTab:"Wyposażenie",kitTitle:"Kreator wyposażenia",kitIntro:"Ustal zasady i to, czego chcesz od każdej broni: strona pokaże wszystkie możliwe pary, od najtańszej.",kitQM:"Quartermaster (6 miejsc)",kitVar:"Uwzględnij warianty",kitMel:"Uwzględnij broń do walki wręcz",kitCap:"Obie bronie razem mogą zająć najwyżej {n} miejsc.",kitBudget:"Budżet",kitTotal:"Łączna cena pary",kitEach:"Cena za broń",kitMax:"Maks. cena",kitW1:"Broń 1",kitW2:"Broń 2",kitSize:"Rozmiar",kitAmmo:"Amunicja",kitAll:"Wszystkie",kitReset:"Resetuj wszystko",kitRes:"Kombinacje",kitCount:"Możliwe pary: {n}, od {a} do {b}, od najtańszej.",kitNone:"Żadna para nie spełnia tych kryteriów. Poszerz rozmiar, amunicję lub budżet.",kitSlots:"{a} / {b} miejsc",kitCmp:"Porównaj tę parę",kitMore:"Pokaż {n} więcej"},
+pt:{favAdd:"Adicionar aos favoritos",favRem:"Remover dos favoritos",fFav:"★ Só favoritos",favNone:"Nenhum favorito ainda: toque em ☆ ao lado de uma arma para adicioná-la.",kitOne:"Só 1 dupla possível, por {a}.",kitTab:"Equipamento",kitTitle:"Montador de equipamento",kitIntro:"Escolha as regras e o que quer de cada arma: o site lista todas as duplas possíveis, da mais barata à mais cara.",kitQM:"Quartermaster (6 espaços)",kitVar:"Incluir variantes",kitMel:"Incluir armas corpo a corpo",kitCap:"As duas armas devem caber em {n} espaços no total.",kitBudget:"Orçamento",kitTotal:"Preço total da dupla",kitEach:"Preço por arma",kitMax:"Preço máx.",kitW1:"Arma 1",kitW2:"Arma 2",kitSize:"Tamanho",kitAmmo:"Munição",kitAll:"Todas",kitReset:"Redefinir tudo",kitRes:"Combinações",kitCount:"{n} duplas possíveis, de {a} a {b}, da mais barata à mais cara.",kitNone:"Nenhuma dupla atende a esses critérios. Amplie o tamanho, a munição ou o orçamento.",kitSlots:"{a} / {b} espaços",kitCmp:"Comparar esta dupla",kitMore:"Mostrar mais {n}"}
+};for(var l in K){for(var x in K[l])T[l][x]=K[l][x];T[l].tabs.kit=K[l].kitTab}})();
+
 var LANGS=[["fr","Français"],["en","English"],["de","Deutsch"],["ru","Русский"],["zh","简体中文"],["pl","Polski"],["pt","Português (BR)"]];
 var LOC={fr:"fr-FR",en:"en-GB",de:"de-DE",ru:"ru-RU",zh:"zh-CN",pl:"pl-PL",pt:"pt-BR"},HL={fr:"fr",en:"en",de:"de",ru:"ru",zh:"zh-Hans",pl:"pl",pt:"pt-BR"},COMMA={fr:1,de:1,ru:1,pl:1,pt:1},SUF={fr:1,de:1,ru:1,pl:1};
 
@@ -894,7 +934,7 @@ var BY={};W.forEach(function(w){BY[w.n]=w});
 function $(id){return document.getElementById(id)}
 var MQ=window.matchMedia?window.matchMedia("(min-width: 1100px)"):null;
 function wide(){return!!(MQ&&MQ.matches)}
-var HASH={list:"catalogue",table:"tableau",cmp:"comparer",book:"livre-dor"};
+var HASH={list:"catalogue",table:"tableau",kit:"equipement",cmp:"comparer",book:"livre-dor"};
 function fromHash(){var x=location.hash.slice(1);for(var k in HASH)if(HASH[k]===x)return k;return null}
 function syncHash(){var x=HASH[state.view];if(x&&location.hash.slice(1)!==x){try{location.hash=x}catch(e){}}}
 var GBN=30,GBS=40,GBT=600,DB=null,RT=!!(window.claude&&typeof window.claude.use==="function");
@@ -952,7 +992,11 @@ function sortGet(w,k){
 }
 function defDir(k){return k==="n"||k==="p"||k==="s"||k==="a"||HI[k]===-1?1:-1}
 function on(o){return Object.keys(o).filter(function(k){return o[k]})}
+var FAV={};try{FAV=JSON.parse(localStorage.getItem("arsenal-favs")||"{}")||{}}catch(e){FAV={}}
+function favSave(){try{localStorage.setItem("arsenal-favs",JSON.stringify(FAV))}catch(e){}}
+function favBtn(n){var on=!!FAV[n];return'<button type="button" class="fav" data-act="fav" data-n="'+h(n)+'" aria-pressed="'+on+'" aria-label="'+h(t(on?"favRem":"favAdd")+" : "+n)+'" title="'+h(t(on?"favRem":"favAdd"))+'">'+(on?"★":"☆")+"</button>"}
 function pass(w){
+ if(state.fav&&!FAV[w.n])return false;
  var sz=on(state.sizes),cl=on(state.classes);
  if(sz.length&&sz.indexOf(String(w.s))<0)return false;
  if(cl.length&&cl.indexOf(w.a)<0&&!(w.a2&&cl.indexOf(w.a2)>=0))return false;
@@ -995,11 +1039,11 @@ function rowVal(w){
 }
 function rowHTML(w,cur){
  var wd=wide(),open=!wd&&state.open===w.n;
- return'<li class="item'+(open?" open":"")+'" data-n="'+h(w.n)+'"><button type="button" class="row" data-act="toggle"'+(wd?(cur===w?' aria-current="true"':""):' aria-expanded="'+open+'"')+">"+
+ return'<li class="item'+(open?" open":"")+'" data-n="'+h(w.n)+'">'+favBtn(w.n)+'<button type="button" class="row" data-act="toggle"'+(wd?(cur===w?' aria-current="true"':""):' aria-expanded="'+open+'"')+">"+
   '<span class="who"><span class="nm">'+h(w.n)+'</span><span class="meta">'+h(clsName(w))+(rowKey()==="p"?"":" · "+money(w.p))+"</span></span>"+pips(w.s)+rowVal(w)+"</button>"+(open?cardHTML(w):"")+"</li>";
 }
 function listHTML(L){
- if(!L.length)return'<p class="empty">'+h(t("none"))+"</p>";
+ if(!L.length)return'<p class="empty">'+h(t(state.fav&&!Object.keys(FAV).some(function(k){return FAV[k]})?"favNone":"none"))+"</p>";
  if(wide()){var c=curOf(L);return'<div class="dual"><div class="dl"><p class="hint">'+h(t("hintW"))+'</p><ul class="list">'+L.map(function(w){return rowHTML(w,c)}).join("")+"</ul></div>"+paneHTML(c)+"</div>"}
  return'<p class="hint">'+h(t("hint"))+'</p><ul class="list">'+L.map(function(w){return rowHTML(w,null)}).join("")+"</ul>";
 }
@@ -1228,7 +1272,7 @@ function cmpHTML(){
 function curOf(L){if(!L.length)return null;if(state.open)for(var i=0;i<L.length;i++)if(L[i].n===state.open)return L[i];return L[0]}
 function paneHTML(w){
  if(!w)return'<aside class="pane"><div class="sheet pempty"><p class="empty">'+h(t("pick"))+"</p></div></aside>";
- return'<aside class="pane" data-n="'+h(w.n)+'" aria-label="'+h(w.n)+'"><div class="sheet"><div class="ph"><div class="who"><h2 class="nm">'+h(w.n)+'</h2><span class="meta">'+h(clsName(w))+" · "+money(w.p)+"</span></div>"+pips(w.s)+"</div>"+cardHTML(w)+"</div></aside>";
+ return'<aside class="pane" data-n="'+h(w.n)+'" aria-label="'+h(w.n)+'"><div class="sheet"><div class="ph">'+favBtn(w.n)+'<div class="who"><h2 class="nm">'+h(w.n)+'</h2><span class="meta">'+h(clsName(w))+" · "+money(w.p)+"</span></div>"+pips(w.s)+"</div>"+cardHTML(w)+"</div></aside>";
 }
 
 /* ---- guestbook: one shared document per writer, livre/<their id> = {msgs:[{id,at,sig,txt}]} ---- */
@@ -1344,6 +1388,53 @@ function gbDelete(d,i){
  gbWrite(d,rest.length?{msgs:rest}:null).then(function(){GB.busy=false;gbPaint()},function(){GB.busy=false;GB.note="gbFail";gbPaint()});
 }
 
+/* ---- loadout builder ---- */
+var KMAXT=2500;
+function kitNew(){return{qm:false,mode:"total",tot:KMAXT,p1:PMAX,p2:PMAX,s1:0,s2:0,c1:"",c2:"",vars:false,mel:false,n:30}}
+state.kit=kitNew();
+function kcap(){return state.kit.qm?CAPQ:CAP}
+function kfix(){var k=state.kit,c=kcap();if(k.s1>c-1)k.s1=0;if(k.s2>c-1)k.s2=0;if(k.s1&&k.s2&&k.s1+k.s2>c)k.s2=0;if(!k.mel){if(k.c1==="H")k.c1="";if(k.c2==="H")k.c2=""}}
+function kpass(w,s,c,pm){var k=state.kit;if(w.var&&!k.vars)return false;if(w.a==="H"&&!k.mel)return false;if(s&&w.s!==s)return false;if(c&&w.a!==c&&w.a2!==c)return false;if(k.mode==="each"&&pm<PMAX&&w.p>pm)return false;return true}
+function kcombos(){
+ var k=state.kit,cap=kcap(),A=W.filter(function(w){return kpass(w,k.s1,k.c1,k.p1)}),B=W.filter(function(w){return kpass(w,k.s2,k.c2,k.p2)}),seen={},out=[];
+ A.forEach(function(a){B.forEach(function(b){
+  if(a===b||a.s+b.s>cap)return;var tot=a.p+b.p;if(k.mode==="total"&&k.tot<KMAXT&&tot>k.tot)return;
+  var key=a.n<b.n?a.n+"|"+b.n:b.n+"|"+a.n;if(seen[key])return;seen[key]=1;out.push([a,b,tot])})});
+ out.sort(function(x,y){return x[2]-y[2]||(x[0].n<y[0].n?-1:x[0].n>y[0].n?1:x[1].n<y[1].n?-1:1)});
+ return out;
+}
+function kpOut(v,mx){return v>=mx?t("noLimit"):"≤ "+money(v)}
+function kOpts(f,vals,cur,lab,dis){return'<div class="opts">'+vals.map(function(v){return'<button type="button" class="opt" data-act="kitset" data-f="'+f+'" data-v="'+v+'" aria-pressed="'+(cur===v)+'"'+(dis&&dis(v)?" disabled":"")+">"+h(lab(v))+"</button>"}).join("")+"</div>"}
+function kSlot(i){
+ var k=state.kit,o=k["s"+(3-i)],cap=kcap(),cls=["","C","M","L","S","B","X"].concat(k.mel?["H"]:[]);
+ return'<div class="kslot"><h4>'+h(t(i===1?"kitW1":"kitW2"))+"</h4>"+
+  '<span class="gl">'+h(t("kitSize"))+"</span>"+kOpts("s"+i,[0,1,2,3,4,5],k["s"+i],function(v){return v?String(v):t("kitAll")},function(v){return v&&(v>cap-1||(o&&v+o>cap))})+
+  '<span class="gl">'+h(t("kitAmmo"))+"</span>"+kOpts("c"+i,cls,k["c"+i],function(v){return v?t("cls")[v]:t("kitAll")})+
+  (k.mode==="each"?'<div class="dropd"><label for="kit-p'+i+'">'+h(t("kitMax"))+'</label><input id="kit-p'+i+'" type="range" min="30" max="'+PMAX+'" step="10" value="'+k["p"+i]+'"><output id="kit-o'+i+'" for="kit-p'+i+'">'+kpOut(k["p"+i],PMAX)+"</output></div>":"")+"</div>";
+}
+function kw(w){return'<div class="kw">'+pips(w.s)+'<span class="kwt"><button type="button" class="lk0" data-act="go" data-n="'+h(w.n)+'">'+h(w.n)+"</button><small>"+h(clsName(w))+" · "+money(w.p)+"</small></span></div>"}
+function kitRes(){
+ var C=kcombos(),k=state.kit,s="<h3>"+h(t("kitRes"))+"</h3>";
+ if(!C.length)return s+'<p class="empty">'+h(t("kitNone"))+"</p>";
+ s+='<p class="small" aria-live="polite">'+h(t(C.length===1?"kitOne":"kitCount").replace("{n}",C.length).replace("{a}",money(C[0][2])).replace("{b}",money(C[C.length-1][2])))+'</p><ol class="kres">';
+ C.slice(0,k.n).forEach(function(c){
+  s+='<li><div class="kpair">'+kw(c[0])+'<span class="kplus" aria-hidden="true">+</span>'+kw(c[1])+'</div><div class="ktot"><span><b>'+money(c[2])+"</b><small>"+h(t("kitSlots").replace("{a}",c[0].s+c[1].s).replace("{b}",kcap()))+'</small></span><button type="button" class="btn solid" data-act="kitcmp" data-a="'+h(c[0].n)+'" data-b="'+h(c[1].n)+'">'+h(t("kitCmp"))+"</button></div></li>"});
+ s+="</ol>";
+ if(C.length>k.n)s+='<div class="acts"><button type="button" class="btn" data-act="kitmore">'+h(t("kitMore").replace("{n}",Math.min(30,C.length-k.n)))+"</button></div>";
+ return s;
+}
+function kitHTML(){
+ var k=state.kit;
+ return'<div class="panel kit"><h3>'+h(t("kitTitle"))+'</h3><p class="small">'+h(t("kitIntro"))+"</p>"+
+  '<div class="kopt"><label class="chk"><input id="kit-qm" type="checkbox"'+(k.qm?" checked":"")+"> "+h(t("kitQM"))+'</label><label class="chk"><input id="kit-var" type="checkbox"'+(k.vars?" checked":"")+"> "+h(t("kitVar"))+'</label><label class="chk"><input id="kit-mel" type="checkbox"'+(k.mel?" checked":"")+"> "+h(t("kitMel"))+"</label></div>"+
+  '<p class="small">'+h(t("kitCap").replace("{n}",kcap()))+"</p>"+
+  '<div class="kbud"><span class="gl">'+h(t("kitBudget"))+'</span><div class="opts">'+["total","each"].map(function(m){return'<button type="button" class="opt" data-act="kitset" data-f="mode" data-v="'+m+'" aria-pressed="'+(k.mode===m)+'">'+h(t(m==="total"?"kitTotal":"kitEach"))+"</button>"}).join("")+"</div>"+
+  (k.mode==="total"?'<div class="dropd"><label for="kit-tot">'+h(t("kitMax"))+'</label><input id="kit-tot" type="range" min="60" max="'+KMAXT+'" step="10" value="'+k.tot+'"><output id="kit-ot" for="kit-tot">'+kpOut(k.tot,KMAXT)+"</output></div>":"")+"</div>"+
+  '<div class="kslots">'+kSlot(1)+kSlot(2)+"</div>"+
+  '<div class="acts"><button type="button" class="btn" data-act="kitreset">'+h(t("kitReset"))+"</button></div>"+
+  '<div class="kitres" id="kitres">'+kitRes()+"</div></div>";
+}
+
 /* ---- contact ---- */
 var TW="Foulques__Nerra",TWURL="https://www.twitch.tv/foulques__nerra";
 function contactHTML(f){
@@ -1366,7 +1457,7 @@ function chips(id,keys,set,label){
 }
 function tabsHTML(){
  $("tabs").setAttribute("aria-label",t("views"));
- $("tabs").innerHTML=["list","table","cmp","book"].filter(function(v){return v!=="book"||RT}).map(function(v){
+ $("tabs").innerHTML=["list","table","kit","cmp","book"].filter(function(v){return v!=="book"||RT}).map(function(v){
   var c=v==="cmp"?state.cmp.length:v==="book"&&gbLive()?GB.list.length:0;
   return'<button type="button" data-v="'+v+'"'+(state.view===v?' aria-current="page"':"")+">"+h(t("tabs")[v])+(c?'<span class="bdg">'+c+"</span>":"")+"</button>"}).join("");
 }
@@ -1378,7 +1469,7 @@ function chrome(){
  $("t-title").textContent=t("title");$("t-sub").textContent=t("sub").replace("{n}",W.length);
  $("l-q").textContent=t("search");$("q").placeholder=t("search");
  $("l-size").textContent=t("fSize");$("l-class").textContent=t("fClass");$("l-more").textContent=t("more");
- $("l-var").textContent=t("fVar");$("l-sp").textContent=t("fSp");$("l-pr").textContent=t("fPr");$("l-sort").textContent=t("fSort");$("b-reset").textContent=t("reset");
+ $("l-var").textContent=t("fVar");$("l-fav").textContent=t("fFav");$("l-sp").textContent=t("fSp");$("l-pr").textContent=t("fPr");$("l-sort").textContent=t("fSort");$("b-reset").textContent=t("reset");
  chips("c-size",[1,2,3,4,5],state.sizes,function(k){return k});
  chips("c-class",CLS,state.classes,function(k){return t("cls")[k]});
  var have={};W.forEach(function(w){w.am.forEach(function(a){have[a.k]=1})});
@@ -1390,9 +1481,10 @@ function chrome(){
  $("foot").innerHTML=contactHTML(f)+"<details><summary>"+h(t("gloss"))+"</summary><dl>"+t("g").map(function(g){return"<div><dt>"+h(g[0])+t("colon")+"</dt><dd>"+h(g[1])+"</dd></div>"}).join("")+"</dl></details><p>"+h(t("excl"))+"</p>";
 }
 function view(){
- var v=$("view");$("filters").hidden=state.view==="cmp"||state.view==="book";
+ var v=$("view");$("filters").hidden=state.view==="cmp"||state.view==="book"||state.view==="kit";
  if(state.view==="cmp"){v.innerHTML=cmpHTML();return}
  if(state.view==="book"){v.innerHTML=bookHTML();gbForm();return}
+ if(state.view==="kit"){v.innerHTML=kitHTML();return}
  var L=W.filter(pass).sort(cmpW);
  $("cnt").textContent=t("count")(L.length,W.length);
  v.innerHTML=state.view==="table"?tableHTML(L):listHTML(L);
@@ -1404,7 +1496,7 @@ function setSort(k,toggle){
  chrome();view();
 }
 function resetFilters(){
- state.q="";state.sizes={};state.classes={};state.special="";state.novar=false;state.pmax=PMAX;
+ state.fav=false;$("ffav").checked=false;state.q="";state.sizes={};state.classes={};state.special="";state.novar=false;state.pmax=PMAX;
  $("q").value="";$("fpr").value=PMAX;$("fvar").checked=false;
 }
 function toTop(){var a=$("anchor");if(a.getBoundingClientRect().top<0)a.scrollIntoView()}
@@ -1424,6 +1516,7 @@ $("view").addEventListener("click",function(e){
   state.open=state.open===n?null:n;view();var x=state.open&&itemEl(n);if(x)x.scrollIntoView({block:"nearest"})}
  else if(act==="ammo"){state.sel[n]={b:+el.getAttribute("data-b"),a:+el.getAttribute("data-a")};refreshCard(n)}
  else if(act==="cmp"){var w=BY[n],s=selOf(w);toggleCmp(w.a==="H"?n+"|1|-1":n+"|"+s.b+"|"+s.a);tabsHTML();refreshCard(n)}
+ else if(act==="fav"){var fn=el.getAttribute("data-n");if(FAV[fn])delete FAV[fn];else FAV[fn]=1;favSave();if(state.fav){view();return}Array.prototype.forEach.call(document.querySelectorAll('.fav[data-n]'),function(b){if(b.getAttribute("data-n")===fn)b.outerHTML=favBtn(fn)})}
  else if(act==="go")goTo(el.getAttribute("data-n"));
  else if(act==="sort")setSort(el.getAttribute("data-k"),true);
  else if(act==="rm"){state.cmp.splice(+el.getAttribute("data-i"),1);state.iso=null;state.read="";tabsHTML();view()}
@@ -1432,6 +1525,10 @@ $("view").addEventListener("click",function(e){
  else if(act==="pt"){state.read=el.getAttribute("data-t");$("rd").textContent=state.read}
  else if(act==="view")setView(el.getAttribute("data-v"));
  else if(act==="gbdel")gbDelete(el.getAttribute("data-d"),el.getAttribute("data-i"));
+ else if(act==="kitset"){var kf=el.getAttribute("data-f"),kv=el.getAttribute("data-v");state.kit[kf]=kf==="s1"||kf==="s2"?+kv:kv;state.kit.n=30;kfix();view()}
+ else if(act==="kitmore"){state.kit.n+=30;$("kitres").innerHTML=kitRes()}
+ else if(act==="kitreset"){state.kit=kitNew();view()}
+ else if(act==="kitcmp"){state.cmp=[];state.iso=null;state.read="";toggleCmp(el.getAttribute("data-a")+"|1|-1");toggleCmp(el.getAttribute("data-b")+"|1|-1");setView("cmp")}
 });
 $("view").addEventListener("pointerover",function(e){
  var el=e.target.closest&&e.target.closest('[data-act="pt"]');if(el&&e.pointerType==="mouse"){state.read=el.getAttribute("data-t");$("rd").textContent=state.read}
@@ -1449,6 +1546,7 @@ $("q").addEventListener("input",function(){state.q=this.value;view()});
 $("fsp").addEventListener("change",function(){state.special=this.value;view()});
 $("fpr").addEventListener("input",function(){state.pmax=+this.value;priceOut();view()});
 $("fvar").addEventListener("change",function(){state.novar=this.checked;view()});
+$("ffav").addEventListener("change",function(){state.fav=this.checked;view()});
 $("fsort").addEventListener("change",function(){setSort(this.value,false)});
 $("b-dir").addEventListener("click",function(){state.dir=-state.dir;dirOut();view()});
 $("b-reset").addEventListener("click",function(){resetFilters();state.sort="n";state.dir=1;chrome();view()});
@@ -1458,6 +1556,8 @@ $("view").addEventListener("input",function(e){
  if(id==="gb-txt"){GB.txt=e.target.value;if(GB.note==="gbDone"||GB.note==="gbNeed")GB.note="";gbForm()}
  else if(id==="gb-sig")GB.sig=e.target.value;
  else if(id==="dropd")dropSet(+e.target.value);
+ else if(id==="kit-tot"||id==="kit-p1"||id==="kit-p2"){var kk=id==="kit-tot"?"tot":id.slice(4),mx=id==="kit-tot"?KMAXT:PMAX;state.kit[kk]=+e.target.value;state.kit.n=30;$(id==="kit-tot"?"kit-ot":"kit-o"+kk.slice(1)).textContent=kpOut(state.kit[kk],mx);$("kitres").innerHTML=kitRes()}
+ else if(id==="kit-qm"||id==="kit-var"||id==="kit-mel"){state.kit[{"kit-qm":"qm","kit-var":"vars","kit-mel":"mel"}[id]]=e.target.checked;state.kit.n=30;kfix();view()}
 });
 $("foot").addEventListener("click",function(e){var b=e.target.closest&&e.target.closest('[data-act="copy"]');if(b)copyTw(b)});
 $("view").addEventListener("pointerdown",dropPointer);
