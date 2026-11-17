@@ -184,11 +184,11 @@ footer dt{display:inline;font-weight:600;color:var(--ink)}
 footer dd{display:inline;margin:0}
 .tabs .bdg{display:inline-block;min-width:1.5em;margin-left:5px;padding:0 5px;border-radius:9px;background:rgba(0,0,0,.38);font:700 .7rem/1.5 var(--text);letter-spacing:0;text-align:center;vertical-align:1px}
 .row[aria-current="true"]{background:linear-gradient(90deg,rgba(142,28,19,.45),rgba(142,28,19,.12) 70%,transparent);box-shadow:inset 3px 0 0 var(--acc)}
-.dual{display:grid;grid-template-columns:minmax(340px,430px) minmax(0,1fr);gap:0 28px;align-items:start;margin-top:14px}
-.dl{min-width:0}
+.dual{display:grid;grid-template-columns:minmax(340px,430px) minmax(0,1fr);gap:0 28px;align-items:stretch;height:calc(100vh - 82px - env(safe-area-inset-top,0px));min-height:420px;margin-top:14px;scroll-margin-top:calc(env(safe-area-inset-top,0px) + 74px)}
+.dl{min-width:0;min-height:0;overflow:auto;padding-right:6px;scrollbar-width:thin;scrollbar-color:var(--edge) transparent}
 .dl .hint{margin:0 0 8px}
 .dl .list{margin-top:0}
-.pane{position:sticky;top:calc(env(safe-area-inset-top,0px) + 70px);max-height:calc(100vh - 84px - env(safe-area-inset-top,0px));overflow:auto;overscroll-behavior:contain;padding:2px 6px 12px 2px;scrollbar-width:thin;scrollbar-color:var(--edge) transparent}
+.pane{height:100%;min-height:0;overflow:auto;padding:2px 6px 12px 2px;scrollbar-width:thin;scrollbar-color:var(--edge) transparent}
 .sheet{padding:6px 4px 10px}
 .ph{display:flex;align-items:center;gap:14px;padding:22px 16px 10px}
 .ph .who{flex:1;min-width:0}
