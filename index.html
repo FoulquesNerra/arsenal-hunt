@@ -313,6 +313,15 @@ html[data-look="dark"] .mast h1{text-shadow:0 0 1px rgba(0,0,0,.6)}
 .bh.b3{top:17%;left:15%;--r:57deg;transform:scale(.7)}
 html[data-look="dark"] .bh{background:radial-gradient(circle,#000 0 3.3px,#0c0805 4.3px,rgba(10,6,3,.9) 5.6px,rgba(90,60,30,.55) 7.4px,rgba(210,170,110,.22) 8.6px,transparent 10.6px)}
 @media (min-width:1180px){.mast{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,640px) minmax(0,1fr);align-items:center;column-gap:16px}.mast .poster{grid-column:2;grid-row:1;width:100%}.topbar{grid-column:3;grid-row:1;justify-self:end;margin-top:60px}}
+.kmore{margin-top:4px}
+.kmore summary{cursor:pointer;color:var(--acc);font:.98rem/1.3 var(--sc);letter-spacing:.03em}
+.kmore[open] summary{margin-bottom:6px}
+.ksort{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.ksort label{color:var(--mute);font:.98rem/1.2 var(--sc)}
+.ksort select{min-width:0;padding:6px 8px;border:1px solid var(--edge);border-radius:3px;background:rgba(255,251,238,.6);color:var(--ink);font:.92rem/1.3 var(--text);color-scheme:light}
+html[data-look="dark"] .ksort select{background:rgba(0,0,0,.28);color-scheme:dark}
+.kam{color:var(--acc);font-weight:700}
+.ktot span small+small{margin-top:1px}
 </style></head><body>
 
 <div class="wrap">
@@ -939,6 +948,7 @@ T.pt={
  excl:"As armas de missão (Wildland, Homestead 78, Shredder, Flame Rifle) não têm preço: só são encontradas durante a partida. Itens recolhidos em missões (forcado, pá…) não estão na lista. A wiki é mantida por jogadores: após uma atualização de balanceamento, confira no jogo."
 };
 /*LANGS_END*/
+
 (function(){var K={
 fr:{contactLink:"Contact",lookDark:"Version sombre",scShort:"en mission",scTag:"Arme de mission",scNote:"Impossible à acheter : on la trouve seulement en partie (caisses d’armes scellées, événements). Elle n’a donc pas de prix et n’apparaît pas dans l’onglet Équipement.",scPair:"Cette arme se trouve en mission : elle ne fait pas partie de l’équipement de départ, donc pas de suggestion d’association.",kitLock:"Arme précise",kitLockNone:"— aucune : utiliser les filtres —",kitUnlock:"Déverrouiller",kitLocked:"Verrouillée",kitUse:"🔒 Faire un duo avec cette arme",favAdd:"Ajouter aux favoris",favRem:"Retirer des favoris",fFav:"★ Favoris uniquement",favNone:"Aucun favori pour l’instant : touchez ☆ à côté d’une arme pour l’ajouter.",kitOne:"Un seul duo possible, à {a}.",kitTab:"Équipement",kitTitle:"Constructeur d’équipement",kitIntro:"Choisissez vos règles, puis ce que vous voulez pour chaque arme : le site liste tous les duos possibles, du moins cher au plus cher.",kitQM:"Quartermaster (6 emplacements)",kitVar:"Inclure les variantes",kitMel:"Inclure les armes de mêlée",kitCap:"Les deux armes ne doivent pas dépasser {n} emplacements au total.",kitBudget:"Budget",kitTotal:"Prix total du duo",kitEach:"Prix par arme",kitMax:"Prix max",kitW1:"Arme 1",kitW2:"Arme 2",kitSize:"Taille",kitAmmo:"Munition",kitAll:"Toutes",kitReset:"Tout réinitialiser",kitRes:"Combinaisons",kitCount:"{n} duos possibles, de {a} à {b}, du moins cher au plus cher.",kitNone:"Aucun duo ne respecte ces critères. Élargissez la taille, la munition ou le budget.",kitSlots:"{a} / {b} emplacements",kitCmp:"Comparer ce duo",kitMore:"Afficher {n} de plus"},
 en:{contactLink:"Contact",lookDark:"Dark version",scShort:"in missions",scTag:"Mission weapon",scNote:"Cannot be bought: it is only found during a match (sealed weapon crates, events). So it has no price and does not appear in the Loadout tab.",scPair:"This weapon is found in missions: it is not part of a starting loadout, so there are no pairing suggestions.",kitLock:"Specific weapon",kitLockNone:"— none: use the filters —",kitUnlock:"Unlock",kitLocked:"Locked",kitUse:"🔒 Build a pair with this weapon",favAdd:"Add to favourites",favRem:"Remove from favourites",fFav:"★ Favourites only",favNone:"No favourites yet: tap ☆ next to a weapon to add it.",kitOne:"Only 1 possible pair, at {a}.",kitTab:"Loadout",kitTitle:"Loadout builder",kitIntro:"Pick your rules, then what you want for each weapon: the site lists every possible pair, cheapest first.",kitQM:"Quartermaster (6 slots)",kitVar:"Include variants",kitMel:"Include melee weapons",kitCap:"Both weapons must fit in {n} slots in total.",kitBudget:"Budget",kitTotal:"Total price of the pair",kitEach:"Price per weapon",kitMax:"Max price",kitW1:"Weapon 1",kitW2:"Weapon 2",kitSize:"Size",kitAmmo:"Ammo",kitAll:"Any",kitReset:"Reset all",kitRes:"Combinations",kitCount:"{n} possible pairs, from {a} to {b}, cheapest first.",kitNone:"No pair matches these criteria. Widen the size, ammo or budget.",kitSlots:"{a} / {b} slots",kitCmp:"Compare this pair",kitMore:"Show {n} more"},
@@ -948,6 +958,24 @@ zh:{contactLink:"联系方式",lookDark:"深色版本",scShort:"任务中获得"
 pl:{contactLink:"Kontakt",lookDark:"Wersja ciemna",scShort:"w misjach",scTag:"Broń z misji",scNote:"Nie można jej kupić: znajduje się ją tylko w trakcie meczu (zapieczętowane skrzynie z bronią, wydarzenia). Dlatego nie ma ceny i nie pojawia się w zakładce Wyposażenie.",scPair:"Tę broń znajduje się w misjach: nie należy do wyposażenia startowego, więc brak propozycji połączeń.",kitLock:"Konkretna broń",kitLockNone:"— brak: użyj filtrów —",kitUnlock:"Odblokuj",kitLocked:"Zablokowana",kitUse:"🔒 Dobierz parę do tej broni",favAdd:"Dodaj do ulubionych",favRem:"Usuń z ulubionych",fFav:"★ Tylko ulubione",favNone:"Brak ulubionych: dotknij ☆ obok broni, aby ją dodać.",kitOne:"Tylko 1 możliwa para, za {a}.",kitTab:"Wyposażenie",kitTitle:"Kreator wyposażenia",kitIntro:"Ustal zasady i to, czego chcesz od każdej broni: strona pokaże wszystkie możliwe pary, od najtańszej.",kitQM:"Quartermaster (6 miejsc)",kitVar:"Uwzględnij warianty",kitMel:"Uwzględnij broń do walki wręcz",kitCap:"Obie bronie razem mogą zająć najwyżej {n} miejsc.",kitBudget:"Budżet",kitTotal:"Łączna cena pary",kitEach:"Cena za broń",kitMax:"Maks. cena",kitW1:"Broń 1",kitW2:"Broń 2",kitSize:"Rozmiar",kitAmmo:"Amunicja",kitAll:"Wszystkie",kitReset:"Resetuj wszystko",kitRes:"Kombinacje",kitCount:"Możliwe pary: {n}, od {a} do {b}, od najtańszej.",kitNone:"Żadna para nie spełnia tych kryteriów. Poszerz rozmiar, amunicję lub budżet.",kitSlots:"{a} / {b} miejsc",kitCmp:"Porównaj tę parę",kitMore:"Pokaż {n} więcej"},
 pt:{contactLink:"Contato",lookDark:"Versão escura",scShort:"em missões",scTag:"Arma de missão",scNote:"Não pode ser comprada: só é encontrada durante a partida (caixas de armas lacradas, eventos). Por isso não tem preço e não aparece na aba Equipamento.",scPair:"Esta arma é encontrada em missões: não faz parte do equipamento inicial, então não há sugestões de combinação.",kitLock:"Arma específica",kitLockNone:"— nenhuma: usar os filtros —",kitUnlock:"Desbloquear",kitLocked:"Travada",kitUse:"🔒 Montar dupla com esta arma",favAdd:"Adicionar aos favoritos",favRem:"Remover dos favoritos",fFav:"★ Só favoritos",favNone:"Nenhum favorito ainda: toque em ☆ ao lado de uma arma para adicioná-la.",kitOne:"Só 1 dupla possível, por {a}.",kitTab:"Equipamento",kitTitle:"Montador de equipamento",kitIntro:"Escolha as regras e o que quer de cada arma: o site lista todas as duplas possíveis, da mais barata à mais cara.",kitQM:"Quartermaster (6 espaços)",kitVar:"Incluir variantes",kitMel:"Incluir armas corpo a corpo",kitCap:"As duas armas devem caber em {n} espaços no total.",kitBudget:"Orçamento",kitTotal:"Preço total da dupla",kitEach:"Preço por arma",kitMax:"Preço máx.",kitW1:"Arma 1",kitW2:"Arma 2",kitSize:"Tamanho",kitAmmo:"Munição",kitAll:"Todas",kitReset:"Redefinir tudo",kitRes:"Combinações",kitCount:"{n} duplas possíveis, de {a} a {b}, da mais barata à mais cara.",kitNone:"Nenhuma dupla atende a esses critérios. Amplie o tamanho, a munição ou o orçamento.",kitSlots:"{a} / {b} espaços",kitCmp:"Comparar esta dupla",kitMore:"Mostrar mais {n}"}
 };for(var l in K){for(var x in K[l])T[l][x]=K[l][x];T[l].tabs.kit=K[l].kitTab}})();
+(function(){var X={
+fr:{kitIntro:"Choisissez vos règles, puis ce que vous voulez pour chaque arme : le site liste tous les duos possibles.",kitCount:"{n} duos possibles, de {a} à {b}.",kitSort:"Trier les duos",kitSBest:"Les plus complémentaires",kitSAsc:"Prix croissant",kitSDesc:"Prix décroissant",kitBestNote:"« Les plus complémentaires » : une arme de près avec une arme de loin, qui utilise au mieux vos emplacements. C’est un calcul du site, pas un classement de joueurs.",kitMoreF:"Plus de filtres",kitSpAmmo:"Munition spéciale",kitAnyAmmo:"Peu importe"},
+en:{kitIntro:"Pick your rules, then what you want for each weapon: the site lists every possible pair.",kitCount:"{n} possible pairs, from {a} to {b}.",kitSort:"Sort pairs",kitSBest:"Most complementary",kitSAsc:"Price: low to high",kitSDesc:"Price: high to low",kitBestNote:"“Most complementary”: a close-range weapon with a long-range one, making the best use of your slots. Computed by the site, not a player ranking.",kitMoreF:"More filters",kitSpAmmo:"Special ammo",kitAnyAmmo:"Any"},
+de:{kitIntro:"Lege deine Regeln fest und was du für jede Waffe willst: Die Seite listet alle möglichen Paare.",kitCount:"{n} mögliche Paare, von {a} bis {b}.",kitSort:"Paare sortieren",kitSBest:"Am besten ergänzend",kitSAsc:"Preis aufsteigend",kitSDesc:"Preis absteigend",kitBestNote:"„Am besten ergänzend“: eine Nah- mit einer Fernkampfwaffe, die deine Plätze bestmöglich nutzt. Von der Seite berechnet, kein Spieler-Ranking.",kitMoreF:"Weitere Filter",kitSpAmmo:"Spezialmunition",kitAnyAmmo:"Egal"},
+ru:{kitIntro:"Задайте правила и пожелания для каждого оружия: сайт покажет все возможные пары.",kitCount:"Возможных пар: {n}, от {a} до {b}.",kitSort:"Сортировка пар",kitSBest:"Лучше всего дополняют друг друга",kitSAsc:"Сначала дешёвые",kitSDesc:"Сначала дорогие",kitBestNote:"«Лучше всего дополняют»: оружие ближнего боя с дальнобойным и наилучшее использование ячеек. Расчёт сайта, а не рейтинг игроков.",kitMoreF:"Ещё фильтры",kitSpAmmo:"Особые патроны",kitAnyAmmo:"Любые"},
+zh:{kitIntro:"设定规则以及每把武器的要求：网站会列出所有可能的组合。",kitCount:"共 {n} 种组合，{a} 至 {b}。",kitSort:"组合排序",kitSBest:"互补性最佳",kitSAsc:"价格从低到高",kitSDesc:"价格从高到低",kitBestNote:"“互补性最佳”：一把近距离武器搭配一把远距离武器，并充分利用栏位。由网站计算，并非玩家排名。",kitMoreF:"更多筛选",kitSpAmmo:"特殊弹药",kitAnyAmmo:"不限"},
+pl:{kitIntro:"Ustal zasady i to, czego chcesz od każdej broni: strona pokaże wszystkie możliwe pary.",kitCount:"Możliwe pary: {n}, od {a} do {b}.",kitSort:"Sortuj pary",kitSBest:"Najlepiej się uzupełniające",kitSAsc:"Cena rosnąco",kitSDesc:"Cena malejąco",kitBestNote:"„Najlepiej się uzupełniające”: broń na krótki dystans z bronią na daleki, z najlepszym wykorzystaniem miejsc. Wyliczone przez stronę, nie ranking graczy.",kitMoreF:"Więcej filtrów",kitSpAmmo:"Amunicja specjalna",kitAnyAmmo:"Dowolna"},
+pt:{kitIntro:"Escolha as regras e o que quer de cada arma: o site lista todas as duplas possíveis.",kitCount:"{n} duplas possíveis, de {a} a {b}.",kitSort:"Ordenar duplas",kitSBest:"Mais complementares",kitSAsc:"Preço crescente",kitSDesc:"Preço decrescente",kitBestNote:"“Mais complementares”: uma arma de curta distância com uma de longa, aproveitando ao máximo seus espaços. Calculado pelo site, não é um ranking de jogadores.",kitMoreF:"Mais filtros",kitSpAmmo:"Munição especial",kitAnyAmmo:"Qualquer"}
+};for(var l in X)for(var x in X[l])T[l][x]=X[l][x]})();
+(function(){var Y={
+fr:{kitAmS1:"Munitions (emplacement 1)",kitAmS2:"Munitions (emplacement 2)",kitAmmoIncl:"dont {x} de munitions",kitAmHint:"Le prix des munitions spéciales choisies est ajouté au prix du duo."},
+en:{kitAmS1:"Ammo (slot 1)",kitAmS2:"Ammo (slot 2)",kitAmmoIncl:"incl. {x} of ammo",kitAmHint:"The price of the chosen special ammo is added to the pair’s price."},
+de:{kitAmS1:"Munition (Platz 1)",kitAmS2:"Munition (Platz 2)",kitAmmoIncl:"davon {x} Munition",kitAmHint:"Der Preis der gewählten Spezialmunition wird zum Preis des Paares addiert."},
+ru:{kitAmS1:"Патроны (ячейка 1)",kitAmS2:"Патроны (ячейка 2)",kitAmmoIncl:"в т. ч. {x} за патроны",kitAmHint:"Цена выбранных особых патронов добавляется к цене пары."},
+zh:{kitAmS1:"弹药（栏位 1）",kitAmS2:"弹药（栏位 2）",kitAmmoIncl:"含弹药 {x}",kitAmHint:"所选特殊弹药的价格会计入组合总价。"},
+pl:{kitAmS1:"Amunicja (miejsce 1)",kitAmS2:"Amunicja (miejsce 2)",kitAmmoIncl:"w tym {x} za amunicję",kitAmHint:"Cena wybranej amunicji specjalnej jest doliczana do ceny pary."},
+pt:{kitAmS1:"Munição (espaço 1)",kitAmS2:"Munição (espaço 2)",kitAmmoIncl:"inclui {x} de munição",kitAmHint:"O preço da munição especial escolhida é somado ao preço da dupla."}
+};for(var l in Y)for(var x in Y[l])T[l][x]=Y[l][x]})();
 
 var LANGS=[["fr","Français"],["en","English"],["de","Deutsch"],["ru","Русский"],["zh","简体中文"],["pl","Polski"],["pt","Português (BR)"]];
 var LOC={fr:"fr-FR",en:"en-GB",de:"de-DE",ru:"ru-RU",zh:"zh-CN",pl:"pl-PL",pt:"pt-BR"},HL={fr:"fr",en:"en",de:"de",ru:"ru",zh:"zh-Hans",pl:"pl",pt:"pt-BR"},COMMA={fr:1,de:1,ru:1,pl:1,pt:1},SUF={fr:1,de:1,ru:1,pl:1};
@@ -1418,38 +1446,59 @@ function gbDelete(d,i){
 
 /* ---- loadout builder ---- */
 var KMAXT=2500;
-function kitNew(){return{l1:"",l2:"",qm:false,mode:"total",tot:KMAXT,p1:PMAX,p2:PMAX,s1:0,s2:0,c1:"",c2:"",vars:false,mel:false,n:30}}
+function kitNew(){return{u1:[],u2:[],sort:"best",a1:"",a2:"",m1:false,m2:false,l1:"",l2:"",qm:false,mode:"total",tot:KMAXT,p1:PMAX,p2:PMAX,s1:0,s2:0,c1:"",c2:"",vars:false,mel:false,n:30}}
 state.kit=kitNew();
 function kcap(){return state.kit.qm?CAPQ:CAP}
 function ksz(i){var k=state.kit,l=k["l"+i];return l&&BY[l]?BY[l].s:k["s"+i]}
-function kfix(){var k=state.kit,c=kcap();if(k.s1>c-1)k.s1=0;if(k.s2>c-1)k.s2=0;if(k.s1&&k.s2&&k.s1+k.s2>c)k.s2=0;if(k.l1&&!k.l2&&k.s2&&ksz(1)+k.s2>c)k.s2=0;if(k.l2&&!k.l1&&k.s1&&ksz(2)+k.s1>c)k.s1=0;if(!k.mel){if(k.c1==="H")k.c1="";if(k.c2==="H")k.c2=""}}
-function kpass(w,s,c,pm){var k=state.kit;if(w.sc)return false;if(w.var&&!k.vars)return false;if(w.a==="H"&&!k.mel)return false;if(s&&w.s!==s)return false;if(c&&w.a!==c&&w.a2!==c)return false;if(k.mode==="each"&&pm<PMAX&&w.p>pm)return false;return true}
+function kfix(){var k=state.kit,c=kcap();if(k.s1>c-1)k.s1=0;if(k.s2>c-1)k.s2=0;if(k.s1&&k.s2&&k.s1+k.s2>c)k.s2=0;if(k.l1&&!k.l2&&k.s2&&ksz(1)+k.s2>c)k.s2=0;if(k.l2&&!k.l1&&k.s1&&ksz(2)+k.s1>c)k.s1=0;if(!k.mel){if(k.c1==="H")k.c1="";if(k.c2==="H")k.c2=""}[1,2].forEach(function(i){if(k["a"+i]&&kAvail(i).indexOf(k["a"+i])<0)k["a"+i]=""})}
+function kamList(w,c){return(w.am||[]).filter(function(x){return x.pr!=="S"&&(!c||(c===w.a?x.b!==2:c===w.a2?x.b===2:true))})}
+function kAvail(i){var k=state.kit,o={};W.forEach(function(w){if(kpass(w,k["s"+i],k["c"+i],k["p"+i],""))kamList(w,k["c"+i]).forEach(function(x){o[x.k]=1})});return Object.keys(o)}
+function kpass(w,s,c,pm,am){var k=state.kit;if(w.sc)return false;if(am&&!kamList(w,c).some(function(x){return x.k===am}))return false;if(w.var&&!k.vars)return false;if(w.a==="H"&&!k.mel)return false;if(s&&w.s!==s)return false;if(c&&w.a!==c&&w.a2!==c)return false;if(k.mode==="each"&&pm<PMAX&&w.p>pm)return false;return true}
+function kcost(w,i){var k=state.kit,c=0,nm=[],seen;
+ if(k["l"+i]===w.n)(k["u"+i]||[]).forEach(function(ix){var a=w.am&&w.am[ix];if(a&&a.pr!=="S"){c+=a.pr;nm.push(aname(a.k))}});
+ else if(k["a"+i]){var a=kamList(w,k["c"+i]).filter(function(x){return x.k===k["a"+i]})[0];if(a){c+=a.pr;nm.push(aname(a.k))}}
+ return{c:c,n:nm}}
 function kcombos(){
- var k=state.kit,cap=kcap(),A=k.l1&&BY[k.l1]?[BY[k.l1]]:W.filter(function(w){return kpass(w,k.s1,k.c1,k.p1)}),B=k.l2&&BY[k.l2]?[BY[k.l2]]:W.filter(function(w){return kpass(w,k.s2,k.c2,k.p2)}),seen={},out=[];
+ var k=state.kit,cap=kcap(),A=k.l1&&BY[k.l1]?[BY[k.l1]]:W.filter(function(w){return kpass(w,k.s1,k.c1,k.p1,k.a1)}),B=k.l2&&BY[k.l2]?[BY[k.l2]]:W.filter(function(w){return kpass(w,k.s2,k.c2,k.p2,k.a2)}),seen={},out=[];
  A.forEach(function(a){B.forEach(function(b){
-  if(a===b||a.s+b.s>cap)return;var tot=a.p+b.p;if(k.mode==="total"&&k.tot<KMAXT&&tot>k.tot)return;
-  var key=a.n<b.n?a.n+"|"+b.n:b.n+"|"+a.n;if(seen[key])return;seen[key]=1;out.push([a,b,tot])})});
- out.sort(function(x,y){return x[2]-y[2]||(x[0].n<y[0].n?-1:x[0].n>y[0].n?1:x[1].n<y[1].n?-1:1)});
+  if(a===b||a.s+b.s>cap)return;var ca=kcost(a,1),cb=kcost(b,2),tot=a.p+b.p+ca.c+cb.c;if(k.mode==="total"&&k.tot<KMAXT&&tot>k.tot)return;
+  var key=a.n<b.n?a.n+"|"+b.n:b.n+"|"+a.n;if(seen[key])return;seen[key]=1;out.push([a,b,tot,PREF[role(a)][role(b)]+(cap-a.s-b.s)*12+((a.a==="H"||b.a==="H")?20:0),ca.c+cb.c,ca.n,cb.n])})});
+ var nm=function(x,y){return x[0].n<y[0].n?-1:x[0].n>y[0].n?1:x[1].n<y[1].n?-1:1};
+ out.sort(k.sort==="best"?function(x,y){return x[3]-y[3]||x[2]-y[2]||nm(x,y)}:k.sort==="desc"?function(x,y){return y[2]-x[2]||nm(x,y)}:function(x,y){return x[2]-y[2]||nm(x,y)});
  return out;
 }
+var AMK=(function(){var o={};W.forEach(function(w){(w.am||[]).forEach(function(a){o[a.k]=1})});return Object.keys(o)})();
+function kkey(n,ak){var w=BY[n];if(ak&&w.am)for(var i=0;i<w.am.length;i++)if(w.am[i].k===ak)return n+"|"+(w.am[i].b||1)+"|"+i;return n+"|1|-1"}
+function kkey2(i,n){var k=state.kit,w=BY[n];if(k["l"+i]!==n&&k["a"+i]){var L=kamList(w,k["c"+i]);for(var q=0;q<L.length;q++)if(L[q].k===k["a"+i]){var ix=w.am.indexOf(L[q]);return n+"|"+(L[q].b||1)+"|"+ix}}if(k["l"+i]===n){var u=(k["u"+i]||[]).filter(function(x){return x>=0});if(u.length)return n+"|"+(w.am[u[0]].b||1)+"|"+u[0]}return kkey(n,k["a"+i])}
+function kmore(i){var k=state.kit,a=k["a"+i],L=kAvail(i).sort(function(x,y){return aname(x).localeCompare(aname(y))});return'<details class="kmore" data-i="'+i+'"'+(k["m"+i]||a?" open":"")+"><summary>"+h(t("kitMoreF"))+(a?" · "+h(aname(a)):"")+'</summary><span class="gl"><label for="kit-a'+i+'">'+h(t("kitSpAmmo"))+'</label></span><select id="kit-a'+i+'" class="klock"><option value="">'+h(t("kitAnyAmmo"))+"</option>"+L.map(function(x){return'<option value="'+h(x)+'"'+(a===x?" selected":"")+">"+h(aname(x))+"</option>"}).join("")+'</select><p class="small">'+h(t("kitAmHint"))+"</p></details>"}
+function kuSel(i,w){var k=state.kit,u=k["u"+i]||[],G;
+ if(!w.am||!w.am.length)return"";
+ if(w.b2)G=[[t("b1"),function(a){return a.b!==2}],[t("b2s"),function(a){return a.b===2}]];
+ else if(w.sl===2)G=[[t("kitAmS1"),null],[t("kitAmS2"),null]];
+ else G=[[t("kitSpAmmo"),null]];
+ return G.map(function(g,j){var o='<option value="-1">'+h(t("base"))+"</option>";
+  w.am.forEach(function(a,ix){if(a.pr==="S"||(g[1]&&!g[1](a)))return;o+='<option value="'+ix+'"'+(u[j]===ix?" selected":"")+">"+h(aname(a.k))+" · "+money(a.pr)+"</option>"});
+  return'<span class="gl"><label for="kit-u'+i+j+'">'+h(g[0])+'</label></span><select id="kit-u'+i+j+'" class="klock">'+o+"</select>"}).join("")+'<p class="small">'+h(t("kitAmHint"))+"</p>"}
 function kpOut(v,mx){return v>=mx?t("noLimit"):"≤ "+money(v)}
 function kOpts(f,vals,cur,lab,dis){return'<div class="opts">'+vals.map(function(v){return'<button type="button" class="opt" data-act="kitset" data-f="'+f+'" data-v="'+v+'" aria-pressed="'+(cur===v)+'"'+(dis&&dis(v)?" disabled":"")+">"+h(lab(v))+"</button>"}).join("")+"</div>"}
 function kSlot(i){
  var k=state.kit,o=ksz(3-i),cap=kcap(),cls=["","C","M","L","S","B","X"].concat(k.mel?["H"]:[]),lk=k["l"+i];
  var sel='<span class="gl"><label for="kit-l'+i+'">'+h(t("kitLock"))+'</label></span><select id="kit-l'+i+'" class="klock"><option value="">'+h(t("kitLockNone"))+"</option>"+W.filter(function(w){return!w.sc}).sort(function(a,b){return a.n<b.n?-1:1}).map(function(w){return'<option value="'+h(w.n)+'"'+(lk===w.n?" selected":"")+">"+h(w.n)+" · "+w.s+" · "+money(w.p)+"</option>"}).join("")+"</select>";
- if(lk&&BY[lk])return'<div class="kslot locked"><h4>'+h(t(i===1?"kitW1":"kitW2"))+' <span class="klk">🔒 '+h(t("kitLocked"))+"</span></h4>"+sel+kw(BY[lk])+'<div class="acts"><button type="button" class="btn" data-act="kitunlock" data-i="'+i+'">'+h(t("kitUnlock"))+"</button></div></div>";
+ if(lk&&BY[lk])return'<div class="kslot locked"><h4>'+h(t(i===1?"kitW1":"kitW2"))+' <span class="klk">🔒 '+h(t("kitLocked"))+"</span></h4>"+sel+kw(BY[lk])+kuSel(i,BY[lk])+'<div class="acts"><button type="button" class="btn" data-act="kitunlock" data-i="'+i+'">'+h(t("kitUnlock"))+"</button></div></div>";
  return'<div class="kslot"><h4>'+h(t(i===1?"kitW1":"kitW2"))+"</h4>"+sel+
   '<span class="gl">'+h(t("kitSize"))+"</span>"+kOpts("s"+i,[0,1,2,3,4,5],k["s"+i],function(v){return v?String(v):t("kitAll")},function(v){return v&&(v>cap-1||(o&&v+o>cap))})+
   '<span class="gl">'+h(t("kitAmmo"))+"</span>"+kOpts("c"+i,cls,k["c"+i],function(v){return v?t("cls")[v]:t("kitAll")})+
-  (k.mode==="each"?'<div class="dropd"><label for="kit-p'+i+'">'+h(t("kitMax"))+'</label><input id="kit-p'+i+'" type="range" min="30" max="'+PMAX+'" step="10" value="'+k["p"+i]+'"><output id="kit-o'+i+'" for="kit-p'+i+'">'+kpOut(k["p"+i],PMAX)+"</output></div>":"")+"</div>";
+  (k.mode==="each"?'<div class="dropd"><label for="kit-p'+i+'">'+h(t("kitMax"))+'</label><input id="kit-p'+i+'" type="range" min="30" max="'+PMAX+'" step="10" value="'+k["p"+i]+'"><output id="kit-o'+i+'" for="kit-p'+i+'">'+kpOut(k["p"+i],PMAX)+"</output></div>":"")+kmore(i)+"</div>";
 }
-function kw(w){return'<div class="kw">'+pips(w.s)+'<span class="kwt"><button type="button" class="lk0" data-act="go" data-n="'+h(w.n)+'">'+h(w.n)+"</button><small>"+h(clsName(w))+" · "+money(w.p)+"</small></span></div>"}
+function kw(w,nm){nm=nm||[];return'<div class="kw">'+pips(w.s)+'<span class="kwt"><button type="button" class="lk0" data-act="go" data-n="'+h(w.n)+'">'+h(w.n)+"</button><small>"+h(clsName(w))+" · "+money(w.p)+(nm.length?' · <b class="kam">+ '+nm.map(h).join(" + ")+"</b>":"")+"</small></span></div>"}
 function kitRes(){
  var C=kcombos(),k=state.kit,s="<h3>"+h(t("kitRes"))+"</h3>";
  if(!C.length)return s+'<p class="empty">'+h(t("kitNone"))+"</p>";
- s+='<p class="small" aria-live="polite">'+h(t(C.length===1?"kitOne":"kitCount").replace("{n}",C.length).replace("{a}",money(C[0][2])).replace("{b}",money(C[C.length-1][2])))+'</p><ol class="kres">';
+ var mn=Infinity,mx=0;C.forEach(function(c){if(c[2]<mn)mn=c[2];if(c[2]>mx)mx=c[2]});
+ s+='<div class="ksort"><label for="kit-sort">'+h(t("kitSort"))+'</label><select id="kit-sort">'+["best","asc","desc"].map(function(v){return'<option value="'+v+'"'+(k.sort===v?" selected":"")+">"+h(t(v==="best"?"kitSBest":v==="asc"?"kitSAsc":"kitSDesc"))+"</option>"}).join("")+"</select></div>"+(k.sort==="best"?'<p class="small">'+h(t("kitBestNote"))+"</p>":"");
+ s+='<p class="small" aria-live="polite">'+h(t(C.length===1?"kitOne":"kitCount").replace("{n}",C.length).replace("{a}",money(mn)).replace("{b}",money(mx)))+'</p><ol class="kres">';
  C.slice(0,k.n).forEach(function(c){
-  s+='<li><div class="kpair">'+kw(c[0])+'<span class="kplus" aria-hidden="true">+</span>'+kw(c[1])+'</div><div class="ktot"><span><b>'+money(c[2])+"</b><small>"+h(t("kitSlots").replace("{a}",c[0].s+c[1].s).replace("{b}",kcap()))+'</small></span><button type="button" class="btn solid" data-act="kitcmp" data-a="'+h(c[0].n)+'" data-b="'+h(c[1].n)+'">'+h(t("kitCmp"))+"</button></div></li>"});
+  s+='<li><div class="kpair">'+kw(c[0],c[5])+'<span class="kplus" aria-hidden="true">+</span>'+kw(c[1],c[6])+'</div><div class="ktot"><span><b>'+money(c[2])+"</b>"+(c[4]?"<small>"+h(t("kitAmmoIncl").replace("{x}",money(c[4])))+"</small>":"")+"<small>"+h(t("kitSlots").replace("{a}",c[0].s+c[1].s).replace("{b}",kcap()))+'</small></span><button type="button" class="btn solid" data-act="kitcmp" data-a="'+h(c[0].n)+'" data-b="'+h(c[1].n)+'">'+h(t("kitCmp"))+"</button></div></li>"});
  s+="</ol>";
  if(C.length>k.n)s+='<div class="acts"><button type="button" class="btn" data-act="kitmore">'+h(t("kitMore").replace("{n}",Math.min(30,C.length-k.n)))+"</button></div>";
  return s;
@@ -1559,9 +1608,9 @@ $("view").addEventListener("click",function(e){
  else if(act==="kitset"){var kf=el.getAttribute("data-f"),kv=el.getAttribute("data-v");state.kit[kf]=kf==="s1"||kf==="s2"?+kv:kv;state.kit.n=30;kfix();view()}
  else if(act==="kitmore"){state.kit.n+=30;$("kitres").innerHTML=kitRes()}
  else if(act==="kitreset"){state.kit=kitNew();view()}
- else if(act==="kitunlock"){state.kit["l"+el.getAttribute("data-i")]="";state.kit.n=30;view()}
+ else if(act==="kitunlock"){state.kit["l"+el.getAttribute("data-i")]="";state.kit["u"+el.getAttribute("data-i")]=[];state.kit.n=30;view()}
  else if(act==="kitlock"){state.kit=kitNew();state.kit.l1=n;state.kit.qm=BY[n].s>=5;setView("kit")}
- else if(act==="kitcmp"){state.cmp=[];state.iso=null;state.read="";toggleCmp(el.getAttribute("data-a")+"|1|-1");toggleCmp(el.getAttribute("data-b")+"|1|-1");setView("cmp")}
+ else if(act==="kitcmp"){state.cmp=[];state.iso=null;state.read="";toggleCmp(kkey2(1,el.getAttribute("data-a")));toggleCmp(kkey2(2,el.getAttribute("data-b")));setView("cmp")}
 });
 $("view").addEventListener("pointerover",function(e){
  var el=e.target.closest&&e.target.closest('[data-act="pt"]');if(el&&e.pointerType==="mouse"){state.read=el.getAttribute("data-t");$("rd").textContent=state.read}
@@ -1590,12 +1639,16 @@ $("view").addEventListener("input",function(e){
  else if(id==="gb-sig")GB.sig=e.target.value;
  else if(id==="dropd")dropSet(+e.target.value);
  else if(id==="kit-tot"||id==="kit-p1"||id==="kit-p2"){var kk=id==="kit-tot"?"tot":id.slice(4),mx=id==="kit-tot"?KMAXT:PMAX;state.kit[kk]=+e.target.value;state.kit.n=30;$(id==="kit-tot"?"kit-ot":"kit-o"+kk.slice(1)).textContent=kpOut(state.kit[kk],mx);$("kitres").innerHTML=kitRes()}
- else if(id==="kit-l1"||id==="kit-l2"){state.kit["l"+id.slice(5)]=e.target.value;state.kit.n=30;kfix();view()}
+ else if(id==="kit-sort"){state.kit.sort=e.target.value;state.kit.n=30;$("kitres").innerHTML=kitRes()}
+ else if(id==="kit-a1"||id==="kit-a2"){state.kit["a"+id.slice(5)]=e.target.value;state.kit.n=30;view()}
+ else if(/^kit-u[12][01]$/.test(id)){var ui="u"+id[5];state.kit[ui]=(state.kit[ui]||[]).slice();state.kit[ui][+id[6]]=+e.target.value;state.kit.n=30;$("kitres").innerHTML=kitRes()}
+ else if(id==="kit-l1"||id==="kit-l2"){state.kit["u"+id.slice(5)]=[];state.kit["l"+id.slice(5)]=e.target.value;state.kit.n=30;kfix();view()}
  else if(id==="kit-qm"||id==="kit-var"||id==="kit-mel"){state.kit[{"kit-qm":"qm","kit-var":"vars","kit-mel":"mel"}[id]]=e.target.checked;state.kit.n=30;kfix();view()}
 });
 $("foot").addEventListener("click",function(e){var b=e.target.closest&&e.target.closest('[data-act="copy"]');if(b)copyTw(b)});
 $("view").addEventListener("pointerdown",dropPointer);
 $("view").addEventListener("pointermove",function(e){if(e.pointerType==="mouse"||e.buttons)dropPointer(e)});
+$("view").addEventListener("toggle",function(e){var d=e.target;if(d&&d.classList&&d.classList.contains("kmore"))state.kit["m"+d.getAttribute("data-i")]=d.open},true);
 window.addEventListener("hashchange",function(){var v=fromHash();if(v&&v!==state.view&&(v!=="book"||RT))setView(v)});
 if(MQ){var mqf=function(){if(state.view==="list")view()};if(MQ.addEventListener)MQ.addEventListener("change",mqf);else if(MQ.addListener)MQ.addListener(mqf)}
 
